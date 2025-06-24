@@ -9614,6 +9614,9 @@ components:
       x-go-name: AtcAction
       x-go-package: github.com/cydarm/case-management/backend/model
     atcControlFlowRequest:
+      description: >-
+        AtcControlFlowReques is a request to add an ATC action to a playbook
+        with the specified control flow
       properties:
         precedence:
           default: 0
@@ -9624,9 +9627,6 @@ components:
           format: uint64
           type: integer
           x-go-name: Precedence
-      title: >-
-        AtcControlFlowReques is a request to add an ATC action to a playbook
-        with the specified control flow.
       type: object
       x-go-name: AtcControlFlowRequest
       x-go-package: github.com/cydarm/case-management/backend/model
@@ -9904,6 +9904,9 @@ components:
       x-go-name: CacaoAction
       x-go-package: github.com/cydarm/case-management/backend/model
     cacaoControlFlow:
+      description: >-
+        CacaoAction models the control flow elements of CACAO playbook action
+        within a playbook
       properties:
         cases:
           additionalProperties:
@@ -9955,13 +9958,13 @@ components:
           description: The switch variable
           type: string
           x-go-name: Switch
-      title: >-
-        CacaoAction models the control flow elements of CACAO playbook action
-        within a playbook.
       type: object
       x-go-name: CacaoActionControlFlow
       x-go-package: github.com/cydarm/case-management/backend/model
     cacaoControlFlowRequest:
+      description: >-
+        CacaoControlFlowRequest is a request to add a CACAO action to a playbook
+        with the specified control flow
       properties:
         condition:
           description: The condition to be evaluated for branching and looping actions
@@ -10049,9 +10052,6 @@ components:
           description: Whether the current action is the start state of the playbook
           type: boolean
           x-go-name: StartAction
-      title: >-
-        CacaoControlFlowRequest is a request to add a CACAO action to a playbook
-        with the specified control flow.
       type: object
       x-go-name: CacaoControlFlowRequest
       x-go-package: github.com/cydarm/case-management/backend/model
@@ -10860,7 +10860,7 @@ components:
     casePlaybookUpdateRequest:
       description: |-
         CasePlaybookUpdateRequest is a request to update a CACAO
-        or ATC playbook instance on a case.
+        or ATC playbook instance on a case
       properties:
         variable_bindings:
           additionalProperties: {}
@@ -12225,6 +12225,9 @@ components:
       x-go-name: HeatMap
       x-go-package: github.com/cydarm/case-management/backend/model
     heatmapReportRequest:
+      description: >-
+        heatmapReportRequest is a request for a heatmap report across tag
+        frequencies together on the same case, for a certain time period
       properties:
         endTime:
           description: The end time of the report.
@@ -12266,9 +12269,6 @@ components:
         - xTagPrefixes
         - yTagPrefixes
         - timezone
-      title: >-
-        heatmapReportRequest is a request for a heatmap report across tag
-        frequencies together on the same case, for a certain time period.
       type: object
       x-go-name: HeatmapReportRequest
       x-go-package: github.com/cydarm/case-management/backend/model
@@ -12745,14 +12745,14 @@ components:
       x-go-name: PlaybookActionResponse
       x-go-package: github.com/cydarm/case-management/backend/model
     playbookControlFlowRequest:
+      description: >-
+        PlaybookControlFlowRequest is a request to add an action to playbook
+        with the specified control flow
       properties:
         atc:
           $ref: '#/components/schemas/atcControlFlowRequest'
         cacao:
           $ref: '#/components/schemas/cacaoControlFlowRequest'
-      title: >-
-        PlaybookControlFlowRequest is a request to add an action to playbook
-        with the specified control flow.
       type: object
       x-go-name: PlaybookControlFlowRequest
       x-go-package: github.com/cydarm/case-management/backend/model
@@ -13072,6 +13072,9 @@ components:
       x-go-name: SessionDetails
       x-go-package: github.com/cydarm/case-management/backend/model
     simpleObjectContainer:
+      description: >-
+        SimpleObjectContainer is a request to return contact details from  STIX
+        node
       properties:
         acl:
           description: The ACL of the data object
@@ -13112,9 +13115,6 @@ components:
         - deletable
         - uuid
         - data
-      title: >-
-        SimpleObjectContainer is a request to return contact details from  STIX
-        node.
       type: object
       x-go-name: SimpleObjectContainer
       x-go-package: github.com/cydarm/case-management/backend/model
@@ -13286,6 +13286,7 @@ components:
       x-go-name: SlaWarning
       x-go-package: github.com/cydarm/case-management/backend/model
     stixUpdateRequest:
+      description: StixNodeUpdateRequest is a request to update a STIX node
       properties:
         Acl:
           description: The UUID of the new ACL
@@ -13310,7 +13311,6 @@ components:
           type: string
       required:
         - Uuid
-      title: StixNodeUpdateRequest is a request to update a STIX node.
       type: object
       x-go-name: StixNodeUpdateRequest
       x-go-package: github.com/cydarm/case-management/backend/model
