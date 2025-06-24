@@ -6,7 +6,7 @@ info:
     url: https://cydarm.com
   description: Cydarm Secure Case Management Platform
   license:
-    name: Copyright 2024 Cydarm Technologies Pty Ltd
+    name: Copyright 2025 Cydarm Technologies Pty Ltd
   title: Cydarm API
   version: v0.8.51.0
 servers:
@@ -77,10 +77,8 @@ tags:
     x-displayName: stix
   - name: sys-prop
     x-displayName: sys-prop
-  - name: third
-    x-displayName: third
-  - name: party
-    x-displayName: party
+  - name: third-party
+    x-displayName: third-party
   - name: user
     x-displayName: user
   - name: user-prop
@@ -5694,8 +5692,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - third
-        - party
+        - third-party
       operationId: GetThirdPartyDetailsAndCache
       summary: Fetches cache for third party integration cache.
       security:
@@ -5722,8 +5719,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - third
-        - party
+        - third-party
       operationId: CreateThirdPartyCacheDetails
       summary: Fetches cache for third party integration cache.
       security:
@@ -5746,8 +5742,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - third
-        - party
+        - third-party
       operationId: UpdateThirdPartyCacheDetails
       requestBody:
         content:
@@ -5781,8 +5776,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - third
-        - party
+        - third-party
       operationId: CreateThirdPartyCacheItem
       requestBody:
         content:
@@ -5818,8 +5812,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - third
-        - party
+        - third-party
       operationId: DeleteThirdPartyCacheItem
       summary: Deletes an item from the third party cache.
       security:
@@ -5848,8 +5841,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - third
-        - party
+        - third-party
       operationId: UpdateThirdPartyCacheItem
       requestBody:
         content:
@@ -15611,8 +15603,7 @@ x-tagGroups:
       - cydarm-api-3.0_other
       - stix
       - sys-prop
-      - third
-      - party
+      - third-party
       - user
       - user-prop
       - wiki
