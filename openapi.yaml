@@ -71,8 +71,8 @@ tags:
     x-displayName: playbook
   - name: playbook-action
     x-displayName: playbook-action
-  - name: cydarm-api-3.0_other
-    x-displayName: other
+  - name: resource
+    x-displayName: resource
   - name: stix
     x-displayName: stix
   - name: sys-prop
@@ -5007,10 +5007,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
+      tags:
+        - resource
       operationId: GetResources
       summary: Gets a list of resources.
-      tags:
-        - cydarm-api-3.0_other
       security:
         - api_key: []
   /resource/{resourceUuid}:
@@ -5035,6 +5035,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
+      tags:
+        - resource
       description: Updates a resource
       operationId: UpdateResource
       requestBody:
@@ -5044,8 +5046,6 @@ paths:
               $ref: '#/components/schemas/resource'
         description: The resource body to update with.
         required: true
-      tags:
-        - cydarm-api-3.0_other
       security:
         - api_key: []
   /sla:
@@ -15600,7 +15600,7 @@ x-tagGroups:
       - org-prop
       - playbook
       - playbook-action
-      - cydarm-api-3.0_other
+      - resource
       - stix
       - sys-prop
       - third-party
