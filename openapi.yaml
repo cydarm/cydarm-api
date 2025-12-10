@@ -3,29 +3,12 @@ info:
   contact:
     email: support@cydarm.com
     name: Cydarm Support
-    url: https://cydarm.com
+    url: https://www.cydarm.com
   description: Cydarm Secure Case Management Platform
   license:
     name: Copyright 2025 Cydarm Technologies Pty Ltd
   title: Cydarm API
-  version: v0.8.51.0
-servers:
-  - url: http://localhost/cydarm-api
-  - url: https://localhost/cydarm-api
-  - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
-    variables:
-      protocol:
-        default: https
-      hostname:
-        default: app
-      domain:
-        default: cydarm.com
-      port:
-        default: ''
-      basePath:
-        default: cydarm-api
-      apiVersion:
-        default: v0.9
+  version: v0.8.55.0
 tags:
   - name: acl
     x-displayName: acl
@@ -101,8 +84,13 @@ tags:
   - description: Atomic operations
     name: operations
     x-displayName: operations
+  - description: System properties
+    name: system-property
+    x-displayName: system-property
 paths:
   /acl:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -159,6 +147,8 @@ paths:
       security:
         - api_key: []
   /acl/search:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '200':
@@ -189,6 +179,8 @@ paths:
       security:
         - api_key: []
   /acl/session/{sessionUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the session to retrieve.
@@ -217,6 +209,8 @@ paths:
       security:
         - api_key: []
   /acl/{aclUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the ACL to delete.
@@ -268,6 +262,8 @@ paths:
       security:
         - api_key: []
   /action-instance/{actionInstanceUuid}/data:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The case action instance to get from.
@@ -348,6 +344,8 @@ paths:
       security:
         - api_key: []
   /actuator:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -398,6 +396,8 @@ paths:
       security:
         - api_key: []
   /actuator/{actuatorId}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The id of the actuator
@@ -460,6 +460,8 @@ paths:
       security:
         - api_key: []
   /actuator/{actuatorId}/heartbeat:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The id of the actuator
@@ -484,6 +486,8 @@ paths:
       security:
         - api_key: []
   /auth/jwt:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The external JWT to authenticate with, as a token
@@ -523,6 +527,8 @@ paths:
       security:
         - api_key: []
   /auth/password:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '200':
@@ -562,6 +568,8 @@ paths:
       security:
         - api_key: []
   /auth/refresh:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The Cydarm-derived JWT to refresh, as a token
@@ -601,6 +609,8 @@ paths:
       security:
         - api_key: []
   /auth/saml:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: A relay state variable to send
@@ -681,6 +691,8 @@ paths:
       security:
         - api_key: []
   /auth/session/{sessionUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the session to end
@@ -740,6 +752,8 @@ paths:
       security:
         - api_key: []
   /auth/totp/{userUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the user to delete TOTP config.
@@ -880,6 +894,8 @@ paths:
       security:
         - api_key: []
   /case:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The page offset to retrieve.
@@ -1020,6 +1036,8 @@ paths:
       security:
         - api_key: []
   /case-cache:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -1076,6 +1094,8 @@ paths:
       security:
         - api_key: []
   /case-cache/{caseUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the case to remove.
@@ -1102,6 +1122,8 @@ paths:
       security:
         - api_key: []
   /case-severity:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -1125,6 +1147,8 @@ paths:
       security:
         - api_key: []
   /case-status:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -1150,6 +1174,8 @@ paths:
       security:
         - api_key: []
   /case-tag:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -1195,6 +1221,8 @@ paths:
       security:
         - api_key: []
   /case-tag/{tagUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The case tag to delete.
@@ -1286,6 +1314,8 @@ paths:
       security:
         - api_key: []
   /case/locator/{locator}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The locator of the case to retrieve.
@@ -1320,6 +1350,8 @@ paths:
       security:
         - api_key: []
   /case/quick-search:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '200':
@@ -1352,6 +1384,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the case to retrieve.
@@ -1420,6 +1454,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/action:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the case.
@@ -1450,6 +1486,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/action-instance/{actionInstanceUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the case.
@@ -1516,6 +1554,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/action/{actionUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The UUID of the case.
@@ -1550,6 +1590,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/data:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The case to get data for.
@@ -1629,6 +1671,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/data/{parentStubId}:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The case to add to.
@@ -1680,6 +1724,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/history:
+    servers:
+      - url: https://localhost/cydarm-api
     put:
       parameters:
         - description: The UUID of the case to update.
@@ -1717,6 +1763,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/history/data:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The case to add to.
@@ -1760,6 +1808,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/member:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the case.
@@ -1796,6 +1846,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/member/{memberUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the case to update.
@@ -1861,6 +1913,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/meta:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The UUID of the case to update.
@@ -1896,6 +1950,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/playbook:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the case.
@@ -1926,6 +1982,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/playbook/{casePlaybookUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the case to remove from.
@@ -2062,6 +2120,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/playbook/{casePlaybookUuid}/action-instance/{actionInstanceUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     put:
       parameters:
         - description: The UUID of the case to update.
@@ -2105,6 +2165,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/playbook/{casePlaybookUuid}/action-instance/{actionInstanceUuid}/case-tag/{tagUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the case to remove from.
@@ -2188,6 +2250,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/sla:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the case.
@@ -2222,6 +2286,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/sla-warning:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the case.
@@ -2258,6 +2324,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/stix:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The case to fetch STIX data for.
@@ -2334,6 +2402,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/stix/{parentStubId}:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The case to add to.
@@ -2379,6 +2449,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/tag:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The case to remove a tag from.
@@ -2482,6 +2554,8 @@ paths:
       security:
         - api_key: []
   /case/{caseUuid}/watch:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The case to remove the watcher from.
@@ -2570,6 +2644,8 @@ paths:
       security:
         - api_key: []
   /connector:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -2620,6 +2696,8 @@ paths:
       security:
         - api_key: []
   /connector-type:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -2672,6 +2750,8 @@ paths:
       security:
         - api_key: []
   /connector-type/{connectorTypeId}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The id of the actuator type
@@ -2730,6 +2810,8 @@ paths:
       security:
         - api_key: []
   /connector/{connectorId}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The id of the connector to delete.
@@ -2811,6 +2893,8 @@ paths:
       security:
         - api_key: []
   /data:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: A relay state variable to send
@@ -2851,6 +2935,8 @@ paths:
       security:
         - api_key: []
   /data/{dataUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the data object to delete.
@@ -2994,6 +3080,8 @@ paths:
       security:
         - api_key: []
   /data/{dataUuid}/file:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the data file object to retrieve.
@@ -3026,6 +3114,8 @@ paths:
       security:
         - api_key: []
   /form:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -3076,6 +3166,8 @@ paths:
       security:
         - api_key: []
   /form{formUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the form to delete.
@@ -3138,6 +3230,8 @@ paths:
       security:
         - api_key: []
   /group:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -3190,6 +3284,8 @@ paths:
       security:
         - api_key: []
   /group/graph:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -3211,6 +3307,8 @@ paths:
       security:
         - api_key: []
   /group/{groupUuid}/group:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the group to retrieve
@@ -3241,6 +3339,8 @@ paths:
       security:
         - api_key: []
   /group/{groupUuid}/group/{memberGroupUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the group to modify.
@@ -3304,6 +3404,8 @@ paths:
       security:
         - api_key: []
   /group/{groupUuid}/user:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the group to retrieve.
@@ -3338,6 +3440,8 @@ paths:
       security:
         - api_key: []
   /group/{groupUuid}/user/{memberUserUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the group to modify.
@@ -3401,6 +3505,8 @@ paths:
       security:
         - api_key: []
   /meta:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -3457,6 +3563,8 @@ paths:
       security:
         - api_key: []
   /meta/{metaUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the metadata to delete.
@@ -3523,6 +3631,8 @@ paths:
       security:
         - api_key: []
   /metrics/cases:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The start time as an RFC3339 timestamp
@@ -3557,6 +3667,8 @@ paths:
       security:
         - api_key: []
   /metrics/openclose:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The start time as an RFC3339 timestamp
@@ -3596,6 +3708,8 @@ paths:
       security:
         - api_key: []
   /metrics/status:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The start time as an RFC3339 timestamp
@@ -3638,6 +3752,8 @@ paths:
       security:
         - api_key: []
   /metrics/time-to-state:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '200':
@@ -3667,6 +3783,8 @@ paths:
       security:
         - api_key: []
   /metrics/users:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -3694,6 +3812,8 @@ paths:
       security:
         - api_key: []
   /notify/{service}:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The name of the service to notify of payload.
@@ -3718,6 +3838,8 @@ paths:
       security:
         - api_key: []
   /notify/{service}/error:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The name of the consumer
@@ -3771,6 +3893,8 @@ paths:
       security:
         - api_key: []
   /notify/{service}/error/{msgUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The name of the consumer
@@ -3802,6 +3926,8 @@ paths:
       security:
         - api_key: []
   /notify/{service}/input:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The name of the consumer
@@ -3832,6 +3958,8 @@ paths:
       security:
         - api_key: []
   /notify/{service}/input/{msgUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The name of the consumer
@@ -3863,6 +3991,8 @@ paths:
       security:
         - api_key: []
   /org:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -3915,6 +4045,8 @@ paths:
       security:
         - api_key: []
   /org-prop/{orgUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the org whose properties are being retrieved.
@@ -3953,6 +4085,8 @@ paths:
       security:
         - api_key: []
   /org-prop/{orgUuid}/{propName}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the org whose property is being deleted.
@@ -4114,6 +4248,8 @@ paths:
       security:
         - api_key: []
   /org/{orgUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The org to delete.
@@ -4195,7 +4331,15 @@ paths:
       security:
         - api_key: []
   /playbook:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
+      parameters:
+        - description: If set, draft playbooks are included in the list.
+          in: query
+          name: include_drafts
+          schema:
+            type: boolean
       responses:
         '200':
           content:
@@ -4245,6 +4389,8 @@ paths:
       security:
         - api_key: []
   /playbook-action:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -4297,6 +4443,8 @@ paths:
       security:
         - api_key: []
   /playbook-action/{uuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the playbook action to delete.
@@ -4378,6 +4526,8 @@ paths:
       security:
         - api_key: []
   /playbook-action/{uuid}/case-tag/{tagUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the playbook action to delete.
@@ -4437,6 +4587,8 @@ paths:
       security:
         - api_key: []
   /playbook/file/upload:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: Only validate the playbook, does not save to database".
@@ -4480,6 +4632,8 @@ paths:
       security:
         - api_key: []
   /playbook/file/{playbookUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The uuid of playbook to export.
@@ -4508,12 +4662,19 @@ paths:
       security:
         - api_key: []
   /playbook/{playbookUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the playbook to delete.
           in: path
           name: playbookUuid
           required: true
+          schema:
+            type: string
+        - description: If set, only the playbook with this modified timestamp is deleted
+          in: query
+          name: modified
           schema:
             type: string
       responses:
@@ -4616,6 +4777,8 @@ paths:
       security:
         - api_key: []
   /playbook/{playbookUuid}/case-tag/{caseTagUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The playbook to remove from.
@@ -4675,6 +4838,8 @@ paths:
       security:
         - api_key: []
   /playbook/{playbookUuid}/playbook-action/{playbookActionUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The playbook to remove from.
@@ -4746,6 +4911,8 @@ paths:
       security:
         - api_key: []
   /report/analyst/:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '201':
@@ -4784,6 +4951,8 @@ paths:
       security:
         - api_key: []
   /report/case/{caseUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The UUID of the case to generate a report for.
@@ -4820,6 +4989,8 @@ paths:
       security:
         - api_key: []
   /report/group:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '201':
@@ -4845,6 +5016,8 @@ paths:
       security:
         - api_key: []
   /report/heatmap/:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '201':
@@ -4876,6 +5049,8 @@ paths:
       security:
         - api_key: []
   /report/mttx/:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '201':
@@ -4915,6 +5090,8 @@ paths:
       security:
         - api_key: []
   /report/summary/:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '201':
@@ -4964,6 +5141,8 @@ paths:
       security:
         - api_key: []
   /report/user:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '201':
@@ -4987,6 +5166,8 @@ paths:
       security:
         - api_key: []
   /resource:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -5014,6 +5195,8 @@ paths:
       security:
         - api_key: []
   /resource/{resourceUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     put:
       parameters:
         - description: The UUID of the resource to update
@@ -5049,6 +5232,8 @@ paths:
       security:
         - api_key: []
   /sla:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: If set, filter by organisation UUID.
@@ -5113,6 +5298,8 @@ paths:
       security:
         - api_key: []
   /sla/{slaUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the SLA to delete.
@@ -5175,6 +5362,8 @@ paths:
       security:
         - api_key: []
   /stix/asset:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -5231,6 +5420,8 @@ paths:
       security:
         - api_key: []
   /stix/asset/bulk:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '201':
@@ -5275,6 +5466,8 @@ paths:
       security:
         - api_key: []
   /stix/asset/{assetUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the asset object to delete.
@@ -5305,6 +5498,8 @@ paths:
       security:
         - api_key: []
   /stix/asset/{uuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     put:
       parameters:
         - description: The UUID of the asset object to update.
@@ -5340,6 +5535,8 @@ paths:
       security:
         - api_key: []
   /stix/contact:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -5388,6 +5585,8 @@ paths:
       security:
         - api_key: []
   /stix/contact/bulk:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       responses:
         '201':
@@ -5432,6 +5631,8 @@ paths:
       security:
         - api_key: []
   /stix/contact/{contactUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the contact object to delete.
@@ -5496,6 +5697,8 @@ paths:
       security:
         - api_key: []
   /stix/{id}:
+    servers:
+      - url: https://localhost/cydarm-api
     put:
       parameters:
         - description: The UUID of the STIX to be updated.
@@ -5533,6 +5736,8 @@ paths:
       security:
         - api_key: []
   /sys-prop:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       responses:
         '200':
@@ -5585,6 +5790,8 @@ paths:
       security:
         - api_key: []
   /sys-prop/{sysPropUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the system property to delete.
@@ -5666,6 +5873,8 @@ paths:
       security:
         - api_key: []
   /third-party/{service}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The name of the service to fetch cache for.
@@ -5754,6 +5963,8 @@ paths:
       security:
         - api_key: []
   /third-party/{service}/cache:
+    servers:
+      - url: https://localhost/cydarm-api
     post:
       parameters:
         - description: The name of the service to fetch cache for.
@@ -5788,6 +5999,8 @@ paths:
       security:
         - api_key: []
   /third-party/{service}/cache/{itemUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The name of the service to update item on.
@@ -5853,6 +6066,8 @@ paths:
       security:
         - api_key: []
   /user:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: If set, deleted user records are included in the list.
@@ -5915,6 +6130,8 @@ paths:
       security:
         - api_key: []
   /user-prop/{userUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the user whose properties are being retrieved.
@@ -5953,6 +6170,8 @@ paths:
       security:
         - api_key: []
   /user-prop/{userUuid}/{propName}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the user whose property is being deleted.
@@ -6114,6 +6333,8 @@ paths:
       security:
         - api_key: []
   /user/{userUuid}:
+    servers:
+      - url: https://localhost/cydarm-api
     delete:
       parameters:
         - description: The UUID of the user to delete.
@@ -6215,6 +6436,8 @@ paths:
       security:
         - api_key: []
   /user/{userUuid}/action:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the user to retrieve.
@@ -6253,6 +6476,8 @@ paths:
       security:
         - api_key: []
   /user/{userUuid}/password:
+    servers:
+      - url: https://localhost/cydarm-api
     put:
       parameters:
         - description: The UUID of the user to update.
@@ -6292,6 +6517,8 @@ paths:
       security:
         - api_key: []
   /user/{userUuid}/reactivate:
+    servers:
+      - url: https://localhost/cydarm-api
     put:
       parameters:
         - description: The UUID of the user to reactivate.
@@ -6322,6 +6549,8 @@ paths:
       security:
         - api_key: []
   /user/{userUuid}/watch:
+    servers:
+      - url: https://localhost/cydarm-api
     get:
       parameters:
         - description: The UUID of the user to retrieve.
@@ -6358,6 +6587,21 @@ paths:
       security:
         - api_key: []
   /wiki-search:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     get:
       parameters:
         - description: The search query
@@ -6397,6 +6641,21 @@ paths:
       tags:
         - wiki
   /wiki-page:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     get:
       parameters:
         - description: The results page to return
@@ -6446,6 +6705,21 @@ paths:
       tags:
         - wiki
   /wiki-page/{uuid}:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     delete:
       parameters:
         - description: The resource UUID
@@ -6541,6 +6815,21 @@ paths:
       tags:
         - wiki
   /connector-operation-type:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     get:
       parameters:
         - description: The results page to return
@@ -6582,6 +6871,21 @@ paths:
       tags:
         - connector-operation-type
   /connector-operation-type/{uuid}:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     delete:
       parameters:
         - description: The resource UUID
@@ -6641,6 +6945,21 @@ paths:
       tags:
         - connector-operation-type
   /event-trigger:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     get:
       parameters:
         - description: The results page to return
@@ -6682,6 +7001,21 @@ paths:
       tags:
         - event-trigger
   /event-trigger/{uuid}:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     delete:
       parameters:
         - description: The resource UUID
@@ -6741,6 +7075,21 @@ paths:
       tags:
         - event-trigger
   /risk:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     get:
       parameters:
         - description: The results page to return
@@ -6799,6 +7148,21 @@ paths:
       tags:
         - risk
   /risk/{uuid}:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     delete:
       parameters:
         - description: The resource UUID
@@ -6875,6 +7239,21 @@ paths:
       tags:
         - risk
   /risk-assessment:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     post:
       requestBody:
         content:
@@ -6892,6 +7271,21 @@ paths:
       tags:
         - risk
   /risk-assessment/{uuid}:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     delete:
       parameters:
         - description: The resource UUID
@@ -6932,6 +7326,21 @@ paths:
       tags:
         - risk
   /case-data:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     post:
       requestBody:
         content:
@@ -6949,6 +7358,21 @@ paths:
       tags:
         - case-data
   /case-data/{uuid}:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     get:
       parameters:
         - description: The resource UUID
@@ -6974,6 +7398,21 @@ paths:
       tags:
         - case-data
   /operations:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
     post:
       requestBody:
         content:
@@ -6998,6 +7437,152 @@ paths:
       summary: Perform a sequence of operations atomically
       tags:
         - operations
+  /system-property:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
+    get:
+      parameters:
+        - description: The results page to return
+          in: query
+          name: page[number]
+          required: true
+          schema:
+            type: integer
+        - description: The size of each page to return
+          in: query
+          name: page[size]
+          required: true
+          schema:
+            type: integer
+        - description: Which additional objects to include
+          in: query
+          name: include
+          required: false
+          schema:
+            items:
+              type: string
+            type: array
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SystemPropertyListResponse'
+          description: The list of system properties
+      summary: Get all system properties
+      tags:
+        - system-property
+    post:
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/SystemPropertyPostRequest'
+      responses:
+        '201':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SystemPropertySingleResponse'
+          description: The newly created system property
+      summary: Create a new system property
+      tags:
+        - system-property
+  /system-property/{uuid}:
+    servers:
+      - url: '{protocol}://{hostname}.{domain}{port}/{basePath}/{apiVersion}'
+        variables:
+          protocol:
+            default: https
+          hostname:
+            default: app
+          domain:
+            default: cydarm.com
+          port:
+            default: ''
+          basePath:
+            default: cydarm-api
+          apiVersion:
+            default: v0.9
+    delete:
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+      responses:
+        '204':
+          description: Confirmation of deletion
+      summary: Delete an existing system property
+      tags:
+        - system-property
+    get:
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+        - description: Which additional objects to include
+          in: query
+          name: include
+          required: false
+          schema:
+            items:
+              type: string
+            type: array
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SystemPropertySingleResponse'
+          description: The system property
+      summary: Get the specified system property
+      tags:
+        - system-property
+    patch:
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/SystemPropertyPatchRequest'
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SystemPropertySingleResponse'
+          description: The updated system property
+      summary: Update an existing system property
+      tags:
+        - system-property
 components:
   requestBodies:
     case:
@@ -7533,18 +8118,24 @@ components:
           type: string
           x-go-name: Description
         easy_connect:
-          description: Whether the connector was created using easy connect
+          description: Whether the connector was created using EzyConnect
           type: boolean
           x-go-name: EasyConnect
         name:
           description: The name of the connector
           type: string
           x-go-name: Name
+        org_uuid:
+          description: The UUID of the connector's organisation
+          format: uuid
+          type: string
+          x-go-name: Org
       required:
         - name
         - connector_type_uuid
         - actuator_uuid
         - active
+        - org_uuid
       type: object
       x-go-package: github.com/cydarm/case-management/backend/model
     ConnectorOperationTypeRequest:
@@ -9615,7 +10206,7 @@ components:
       x-go-package: github.com/cydarm/case-management/backend/model
     atcControlFlowRequest:
       description: >-
-        AtcControlFlowReques is a request to add an ATC action to a playbook
+        AtcControlFlowRequest is a request to add an ATC action to a playbook
         with the specified control flow
       properties:
         precedence:
@@ -9693,40 +10284,6 @@ components:
         - actions
       type: object
       x-go-name: AtcPlaybook
-      x-go-package: github.com/cydarm/case-management/backend/model
-    averageTime:
-      description: AverageTime is a record of a single timing statistic
-      properties:
-        count:
-          description: The number of items processed
-          format: int64
-          type: integer
-          x-go-name: Count
-        method:
-          description: The method used to derive the metric
-          type: string
-          x-go-name: Method
-        name:
-          description: The name of the metric
-          type: string
-          x-go-name: Name
-        precedence:
-          description: The precedence of this item
-          format: int64
-          type: integer
-          x-go-name: Precedence
-        value:
-          description: The value of the metric
-          format: double
-          type: number
-          x-go-name: Value
-      required:
-        - method
-        - name
-        - value
-        - count
-      type: object
-      x-go-name: AverageTime
       x-go-package: github.com/cydarm/case-management/backend/model
     cacaoAction:
       description: CacaoAction models a CACAO playbook action
@@ -9961,100 +10518,6 @@ components:
       type: object
       x-go-name: CacaoActionControlFlow
       x-go-package: github.com/cydarm/case-management/backend/model
-    cacaoControlFlowRequest:
-      description: >-
-        CacaoControlFlowRequest is a request to add a CACAO action to a playbook
-        with the specified control flow
-      properties:
-        condition:
-          description: The condition to be evaluated for branching and looping actions
-          type: string
-          x-go-name: Condition
-        next_steps:
-          description: The UUIDs of the next actions to be executed in parallel
-          items:
-            format: uuid
-            type: string
-          type: array
-          x-go-name: ParallelNextSteps
-        on_completion:
-          description: >-
-            The UUID of the action to be executed on completion of the current
-            action
-          format: uuid
-          maxLength: 36
-          minLength: 36
-          type: string
-          x-go-name: OnCompletion
-        on_failure:
-          description: >-
-            The UUID of the action to be executed on the failure of the current
-            action
-          format: uuid
-          maxLength: 36
-          minLength: 36
-          type: string
-          x-go-name: OnFailure
-        on_false:
-          description: >-
-            The UUID of the action to be executed when a loop or branch
-            condition evaluates to false
-          format: uuid
-          maxLength: 36
-          minLength: 36
-          type: string
-          x-go-name: OnFalse
-        on_success:
-          description: >-
-            The UUID of the action to be executed on the success of the current
-            action
-          format: uuid
-          maxLength: 36
-          minLength: 36
-          type: string
-          x-go-name: OnSuccess
-        on_true:
-          description: >-
-            The UUID of the action to be executed when a loop or branch
-            condition evaluates to true
-          format: uuid
-          maxLength: 36
-          minLength: 36
-          type: string
-          x-go-name: OnTrue
-        playbook_id:
-          description: The UUID of the next playbook to be executed
-          format: uuid
-          maxLength: 36
-          minLength: 36
-          type: string
-          x-go-name: NextPlaybook
-        switch:
-          description: The switch variable
-          type: string
-          x-go-name: Switch
-        switch_cases:
-          additionalProperties:
-            format: uuid
-            type: string
-          description: >-
-            A map from a variable value to the UUID representing the switch
-            cases
-          type: object
-          x-go-name: SwitchCases
-        workflow_exception:
-          default: false
-          description: Whether the current action is the error state of the playbook
-          type: boolean
-          x-go-name: ExceptionAction
-        workflow_start:
-          default: false
-          description: Whether the current action is the start state of the playbook
-          type: boolean
-          x-go-name: StartAction
-      type: object
-      x-go-name: CacaoControlFlowRequest
-      x-go-package: github.com/cydarm/case-management/backend/model
     cacaoPlaybook:
       description: CacaoPlaybook represents a CACAO playbnook
       properties:
@@ -10108,12 +10571,6 @@ components:
           description: A description for the playbook
           type: string
           x-go-name: Description
-        extension_definitions:
-          description: |-
-            A dictionary of extension definitions that are referenced
-            from workflow steps found in the workflow property.
-          type: object
-          x-go-name: ExtensionDefinitions
         external_references:
           description: A list of external references associated with the playbook
           type: object
@@ -10184,11 +10641,6 @@ components:
           format: int64
           type: integer
           x-go-name: Priority
-        revoked:
-          default: false
-          description: Whether the playbook was deleted/revoked
-          type: boolean
-          x-go-name: Deleted
         severity:
           description: The severity score associated with the playbook
           format: int64
@@ -11237,13 +11689,18 @@ components:
           type: string
           x-go-name: Description
         easy_connect:
-          description: Whether the connector was created using easy connect
+          description: Whether the connector was created using EzyConnect
           type: boolean
           x-go-name: EasyConnect
         name:
           description: The name of the connector
           type: string
           x-go-name: Name
+        org_uuid:
+          description: The UUID of the connector's organisation
+          format: uuid
+          type: string
+          x-go-name: Org
         status:
           $ref: '#/components/schemas/integrationStatus'
         triggers:
@@ -11263,6 +11720,7 @@ components:
         - connector_type_uuid
         - actuator_uuid
         - active
+        - org_uuid
       type: object
       x-go-name: Connector
       x-go-package: github.com/cydarm/case-management/backend/model
@@ -11502,18 +11960,24 @@ components:
           type: string
           x-go-name: Description
         easy_connect:
-          description: Whether the connector was created using easy connect
+          description: Whether the connector was created using EzyConnect
           type: boolean
           x-go-name: EasyConnect
         name:
           description: The name of the connector
           type: string
           x-go-name: Name
+        org_uuid:
+          description: The UUID of the connector's organisation
+          format: uuid
+          type: string
+          x-go-name: Org
       required:
         - name
         - connector_type_uuid
         - actuator_uuid
         - active
+        - org_uuid
       type: object
       x-go-name: CreateConnectorRequest
       x-go-package: github.com/cydarm/case-management/backend/model
@@ -12275,7 +12739,7 @@ components:
     integrationConfig:
       description: IntegrationConfig is the config of an actuator or connector
       properties:
-        CommonContext:
+        common_context:
           $ref: '#/components/schemas/ActuatorCommonContext'
         data:
           description: The config data
@@ -12654,6 +13118,10 @@ components:
           format: uuid
           type: string
           x-go-name: ActionInstanceUuid
+        actionModified:
+          description: The modified timestamp of the action
+          type: string
+          x-go-name: ActionModified
         actionName:
           description: The name of the action
           minLength: 1
@@ -12715,6 +13183,8 @@ components:
       required:
         - actionInstanceUuid
         - Case
+        - actionUuid
+        - actionModified
         - position
         - actionName
         - actionDescription
@@ -12751,8 +13221,6 @@ components:
       properties:
         atc:
           $ref: '#/components/schemas/atcControlFlowRequest'
-        cacao:
-          $ref: '#/components/schemas/cacaoControlFlowRequest'
       type: object
       x-go-name: PlaybookControlFlowRequest
       x-go-package: github.com/cydarm/case-management/backend/model
@@ -14253,6 +14721,169 @@ components:
         data:
           $ref: '#/components/schemas/WikiPageObjectResource'
       type: object
+    IntegrationStatus:
+      additionalProperties: false
+      description: Status for a connector or actuator
+      nullable: true
+      properties:
+        status:
+          description: The status of the connector or actuator
+          type: string
+        message:
+          description: The status message
+          type: string
+      required:
+        - status
+      type: object
+    IntegrationConfig:
+      additionalProperties: false
+      description: Config for a connector or actuator
+      nullable: true
+      properties:
+        data:
+          description: The configuration data, as a base64 encoded JSON string
+          format: Byte
+          type: string
+        encryption_keys:
+          description: The encryption keys used to encrypt fields in the config data
+          items:
+            $ref: '#/components/schemas/IntegrationConfig_encryption_keys_inner'
+          type: array
+        common_context:
+          additionalProperties: true
+          description: Common fields for connector and actuator configurations
+          type: object
+      required:
+        - data
+      type: object
+    IntegrationConfigSchema:
+      nullable: true
+      properties:
+        data:
+          description: The configuration schema, as a base64 encoded JSON string
+          format: Byte
+          type: string
+        encrypted_fields:
+          description: >-
+            The fields within the config that are encrypted, eg [
+            "users[*].password", ... ]
+          items:
+            type: string
+          type: array
+      type: object
+    ConnectorResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        id:
+          description: The UUID of the connector
+          format: UuidPtr
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ConnectorResource_attributes'
+        relationships:
+          $ref: '#/components/schemas/ConnectorResource_relationships'
+        meta:
+          $ref: '#/components/schemas/ObjectMetadataSet'
+      type: object
+    ConnectorRequestResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ConnectorRequestResource_attributes'
+        relationships:
+          $ref: '#/components/schemas/ConnectorRequestResource_relationships'
+      type: object
+    ConnectorUpdateRequestResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ConnectorUpdateRequestResource_attributes'
+      type: object
+    ConnectorListTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          description: List of objects in this resource
+          items:
+            $ref: '#/components/schemas/ConnectorResource'
+          type: array
+      type: object
+    ConnectorTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/ConnectorResource'
+      type: object
+    ConnectorRequestTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/ConnectorRequestResource'
+      type: object
+    ConnectorUpdateRequestTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/ConnectorUpdateRequestResource'
+      type: object
     ConnectorOperationTypeResource:
       nullable: true
       properties:
@@ -14342,6 +14973,126 @@ components:
         data:
           $ref: '#/components/schemas/ConnectorOperationTypeUpdateRequestResource'
       type: object
+    ConnectorTypeResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        id:
+          description: The UUID of the connector type
+          format: UuidPtr
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ConnectorTypeResource_attributes'
+        relationships:
+          $ref: '#/components/schemas/ConnectorTypeResource_relationships'
+        meta:
+          $ref: '#/components/schemas/ObjectMetadataSet'
+      type: object
+    ConnectorTypeTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/ConnectorTypeResource'
+      type: object
+    ConnectorTypeListTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          description: A list of connector types
+          items:
+            $ref: '#/components/schemas/ConnectorTypeResource'
+          type: array
+      type: object
+    ConnectorTypeRequestResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ConnectorTypeResource_attributes'
+        relationships:
+          $ref: '#/components/schemas/ConnectorTypeResource_relationships'
+        meta:
+          $ref: '#/components/schemas/ObjectMetadataSet'
+      type: object
+    ConnectorTypeRequestTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/ConnectorTypeRequestResource'
+      type: object
+    ConnectorTypeUpdateRequestResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ConnectorTypeUpdateRequestResource_attributes'
+        relationships:
+          $ref: >-
+            #/components/schemas/ConnectorTypeUpdateRequestResource_relationships
+        meta:
+          $ref: '#/components/schemas/ObjectMetadataSet'
+      type: object
+    ConnectorTypeUpdateRequestTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/ConnectorTypeUpdateRequestResource'
+      type: object
     EventTriggerTopLevel:
       properties:
         links:
@@ -14410,7 +15161,7 @@ components:
         type:
           type: string
         attributes:
-          $ref: '#/components/schemas/EventTriggerResource_attributes'
+          $ref: '#/components/schemas/EventTriggerRequestResource_attributes'
         relationships:
           $ref: '#/components/schemas/EventTriggerResource_relationships'
       type: object
@@ -14869,6 +15620,73 @@ components:
         meta:
           $ref: '#/components/schemas/ObjectMetadataSet'
       type: object
+    SystemPropertyResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        id:
+          description: The UUID of the property
+          format: UuidPtr
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SystemPropertyResource_attributes'
+        relationships:
+          $ref: '#/components/schemas/ConnectorOperationTypeResource_relationships'
+        meta:
+          $ref: '#/components/schemas/ObjectMetadataSet'
+      type: object
+    SystemPropertySingleResponse:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/SystemPropertyResource'
+      type: object
+    SystemPropertyListResponse:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          description: List of objects in this resource
+          items:
+            $ref: '#/components/schemas/SystemPropertyResource'
+          type: array
+      type: object
+    SystemPropertyPostRequest:
+      properties:
+        data:
+          $ref: '#/components/schemas/SystemPropertyPostRequest_data'
+      type: object
+    SystemPropertyPatchRequest:
+      properties:
+        data:
+          $ref: '#/components/schemas/SystemPropertyPatchRequest_data'
+      type: object
     JsonApiError_source:
       example:
         pointer: pointer
@@ -14980,6 +15798,102 @@ components:
         creator:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
       type: object
+    IntegrationConfig_encryption_keys_inner:
+      additionalProperties: false
+      properties:
+        field_name:
+          type: string
+        key_name:
+          type: string
+        key_version:
+          type: integer
+      required:
+        - field_name
+        - key_name
+        - key_version
+      type: object
+    ConnectorResource_attributes:
+      properties:
+        name:
+          description: The name of the connector
+          type: string
+        description:
+          description: The description of the connector
+          type: string
+        active:
+          description: Whether the connector is active
+          type: boolean
+        easy_connect:
+          description: Whether the connector was created via EzyConnect
+          type: boolean
+        status:
+          $ref: '#/components/schemas/IntegrationStatus'
+        config:
+          $ref: '#/components/schemas/IntegrationConfig'
+      type: object
+    ConnectorResource_relationships:
+      nullable: true
+      properties:
+        acl:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        org:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        connector_type:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        actuator:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        triggers:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
+      type: object
+    ConnectorRequestResource_attributes_config:
+      description: The configuration for the connector
+      properties:
+        data:
+          format: base64
+          type: string
+      type: object
+    ConnectorRequestResource_attributes:
+      properties:
+        name:
+          description: The name of the connector
+          type: string
+        description:
+          description: The description of the connector
+          type: string
+        active:
+          description: Whether the connector is active
+          type: boolean
+        easy_connect:
+          description: Whether the connector was created via EzyConnect
+          type: boolean
+        config:
+          $ref: '#/components/schemas/ConnectorRequestResource_attributes_config'
+      type: object
+    ConnectorRequestResource_relationships:
+      nullable: true
+      properties:
+        org:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        actuator:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        connector_type:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+      type: object
+    ConnectorUpdateRequestResource_attributes:
+      properties:
+        description:
+          description: The description of the connector
+          nullable: true
+          type: string
+        active:
+          description: Whether the connector is active
+          nullable: true
+          type: boolean
+        status:
+          $ref: '#/components/schemas/IntegrationStatus'
+        config:
+          $ref: '#/components/schemas/ConnectorRequestResource_attributes_config'
+      type: object
     ConnectorOperationTypeResource_attributes:
       properties:
         name:
@@ -15040,6 +15954,47 @@ components:
           description: Whether the operation type needs API access
           type: boolean
       type: object
+    ConnectorTypeResource_attributes:
+      properties:
+        name:
+          description: The name of the connector type
+          type: string
+        display_name:
+          description: The display name of the connector type
+          type: string
+        description:
+          description: The description of the connector type
+          type: string
+        config_schema:
+          $ref: '#/components/schemas/IntegrationConfigSchema'
+      type: object
+    ConnectorTypeResource_relationships:
+      nullable: true
+      properties:
+        acl:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        supported_operation_types:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
+      type: object
+    ConnectorTypeUpdateRequestResource_attributes:
+      properties:
+        display_name:
+          description: The display name of the connector type
+          nullable: true
+          type: string
+        description:
+          description: The description of the connector type
+          nullable: true
+          type: string
+        config_schema:
+          $ref: '#/components/schemas/IntegrationConfigSchema'
+      type: object
+    ConnectorTypeUpdateRequestResource_relationships:
+      nullable: true
+      properties:
+        supported_operation_types:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
+      type: object
     EventTriggerResource_attributes:
       properties:
         name:
@@ -15063,8 +16018,8 @@ components:
           type: object
         easy_connect:
           description: >-
-            Whether the trigger was created by, and editable in, the easy
-            connect UI
+            Whether the trigger was created by, and is editable in, the
+            EzyConnect UI
           type: boolean
       type: object
     EventTriggerResource_relationships:
@@ -15076,6 +16031,33 @@ components:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
         connector:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
+      type: object
+    EventTriggerRequestResource_attributes:
+      properties:
+        name:
+          description: The name of the trigger
+          type: string
+        description:
+          description: The description of the trigger
+          type: string
+        active:
+          description: Whether the trigger is active
+          type: boolean
+        event_type:
+          description: The type of event to use to launch the trigger
+          type: string
+        condition:
+          description: The condition defining when the event should be triggered
+          format: Byte
+          type: string
+        operation_arguments:
+          description: The arguments to the operation
+          type: object
+        easy_connect:
+          description: >-
+            Whether the trigger was created by, and editable in, the EzyConnect
+            UI
+          type: boolean
       type: object
     EventTriggerPatchResource_attributes:
       properties:
@@ -15104,8 +16086,8 @@ components:
           type: object
         easy_connect:
           description: >-
-            Whether the trigger was created by, and editable in, the easy
-            connect UI
+            Whether the trigger was created by, and editable in, the EzyConnect
+            UI
           nullable: true
           type: boolean
       type: object
@@ -15512,6 +16494,72 @@ components:
         org:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
       type: object
+    SystemPropertyResource_attributes_encryption_key:
+      description: The encryption key used to encrypt the value field, if any
+      nullable: true
+      properties:
+        key_name:
+          type: string
+        key_version:
+          type: integer
+      type: object
+    SystemPropertyResource_attributes:
+      properties:
+        name:
+          description: The name of the property
+          type: string
+        value:
+          description: The value of the property, as a base64 encoded string
+          format: Byte
+          type: string
+        encryption_key:
+          $ref: >-
+            #/components/schemas/SystemPropertyResource_attributes_encryption_key
+      type: object
+    SystemPropertyPostRequest_data_attributes:
+      properties:
+        name:
+          description: The name of the property
+          type: string
+        value:
+          description: The value of the property, as a base64 encoded string
+          format: Byte
+          type: string
+        encrypted:
+          description: Whether the value is encrypted
+          type: boolean
+      type: object
+    SystemPropertyPostRequest_data:
+      nullable: true
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SystemPropertyPostRequest_data_attributes'
+        relationships:
+          $ref: '#/components/schemas/ConnectorOperationTypeResource_relationships'
+      type: object
+    SystemPropertyPatchRequest_data_attributes:
+      properties:
+        name:
+          description: The new name of the property
+          nullable: true
+          type: string
+        value:
+          description: The new value of the property, as a base64 encoded string
+          format: Byte
+          type: string
+      type: object
+    SystemPropertyPatchRequest_data:
+      nullable: true
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SystemPropertyPatchRequest_data_attributes'
+        relationships:
+          $ref: '#/components/schemas/ConnectorOperationTypeResource_relationships'
+      type: object
   securitySchemes:
     api_key:
       in: header
@@ -15612,3 +16660,4 @@ x-tagGroups:
       - event-trigger
       - case-data
       - operations
+      - system-property
