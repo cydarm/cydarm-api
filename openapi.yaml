@@ -3,14 +3,13 @@ info:
   contact:
     email: support@cydarm.com
     name: Cydarm Support
-    url: https://cydarm.com
+    url: https://www.cydarm.com
   description: Cydarm Cybersecurity Incident Response Management Platform
   license:
     name: Copyright 2026 Cydarm Technologies Pty Ltd
   title: Cydarm API
   version: v26.5.1
 servers:
-  - url: http://localhost/cydarm-api
   - url: https://localhost/cydarm-api
 tags:
   - name: cydarm-api-3.0_acl
