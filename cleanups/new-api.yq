@@ -1,0 +1,23 @@
+### Fix schema issues with api-new
+
+# add securiy.api_key=[]
+.security = [{"api_key": []}] |
+
+## case/sla endpoints have been re-implemented in api-new but have conflicting tags
+## with the legacy api, so update the tags to avoid conflicts
+
+# /v0.9/case: filtered case list (new implementation)
+.paths."/v0.9/case".get.tags = ["case-filter"] |
+.tags = [.tags[] | select(.name == "case").name = "case-filter" // .] |
+
+# /v0.9/sla: SLA CRUD (replaces legacy /sla)
+.paths."/v0.9/sla".get.tags = ["sla-definition"] |
+.paths."/v0.9/sla".post.tags = ["sla-definition"] |
+.paths."/v0.9/sla/{uuid}".get.tags = ["sla-definition"] |
+.paths."/v0.9/sla/{uuid}".patch.tags = ["sla-definition"] |
+.paths."/v0.9/sla/{uuid}".delete.tags = ["sla-definition"] |
+.tags = [.tags[] | select(.name == "sla").name = "sla-definition" // .] |
+
+### END
+#Keep this here so each line can be terminated with |
+.

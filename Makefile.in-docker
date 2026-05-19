@@ -1,0 +1,94 @@
+# This is intended to be used inside the Docker container for building the API client.
+
+# GIT_DESCRIBE & RELEASE VERSION should be provided in the environment already
+
+all: /out/cydarm-api-$(RELEASE_VERSION).yaml /out/cydarm-api-$(RELEASE_VERSION).html /out/openapi.yaml
+
+go-swagger_cydarm-api.yaml: /repos/case-management/backend
+	# INPUT: /repos/case-management/backend
+	# OUTPUT: go-swagger_cydarm-api.yaml
+	swagger generate spec --work-dir /repos/case-management/backend --scan-models --output /build/go-swagger_cydarm-api.original.yaml
+	yq --from-file /src/cleanups/go-swagger.yq /build/go-swagger_cydarm-api.original.yaml > /build/go-swagger_cydarm-api.yaml 
+ifdef RELEASE_VERSION
+	sed -i -E "s/version: v.+/version: $(RELEASE_VERSION)/g" /build/go-swagger_cydarm-api.yaml
+else
+	sed -i -E "s/version: v.+/version: $(GIT_DESCRIBE)/g" /build/go-swagger_cydarm-api.yaml
+endif
+
+api-spec-converter_cydarm-api.yaml: go-swagger_cydarm-api.yaml
+	# INPUT: go-swagger_cydarm-api.yaml
+	# OUTPUT: api-spec-converter_cydarm-api.yaml
+	api-spec-converter \
+		--from swagger_2 \
+		--to openapi_3 \
+		--syntax yaml \
+		./go-swagger_cydarm-api.yaml > ./api-spec-converter_cydarm-api.yaml
+
+go-swagger_converted.yaml: go-swagger_cydarm-api.yaml
+	# INPUT: go-swagger_cydarm-api.yaml
+	# OUTPUT: go-swagger_converted.yaml
+	docker-entrypoint.sh generate \
+	    --input-spec ./go-swagger_cydarm-api.yaml \
+	    --generator-name openapi-yaml \
+	    --output ./_go-swagger_converted
+	cp _go-swagger_converted/openapi/openapi.yaml ./go-swagger_converted.yaml
+
+new-api.yaml: api-spec-converter_cydarm-api.yaml go-swagger_converted.yaml
+	# INPUT: api-spec-converter_cydarm-api.yaml, go-swagger_converted.yaml
+	# OUTPUT: new-api.yaml
+	cp -r /repos/case-management/backend/api-new/api_gen/ /build/new-api/
+	### STAGE 4: Manual fix-ups
+	# pyproject.toml requires a license name to match a specific format: https://packaging.python.org/en/latest/specifications/license-expression/#specification
+	cp /build/api-spec-converter_cydarm-api.yaml \
+		/build/api-spec-converter_cydarm-api.yaml.original
+	sed -i 's/name: Copyright \([0-9]*\) Cydarm Technologies Pty Ltd/name: LicenseRef-Copyright-\1-Cydarm-Technologies-Pty-Ltd/g' \
+		/build/api-spec-converter_cydarm-api.yaml
+	cp /build/go-swagger_converted.yaml /build/go-swagger_converted.yaml.original
+	sed -i 's/name: Copyright \([0-9]*\) Cydarm Technologies Pty Ltd/name: LicenseRef-Copyright-\1-Cydarm-Technologies-Pty-Ltd/g' \
+		/build/go-swagger_converted.yaml
+	# Prefix the paths in the OpenAPI spec to include the version as joining the two specs together doesn't include the 'v0.9/' prefix that's in the base path of the new API spec.
+	sed 's|^  /|  /v0.9/|g' new-api/api/openapi.yaml > new-api.original.yaml
+	yq --from-file /src/cleanups/new-api.yq new-api.original.yaml > new-api.yaml 
+
+redocly_cydarm-api.yaml: new-api.yaml api-spec-converter_cydarm-api.yaml
+	# INPUT: new-api.yaml, api-spec-converter_cydarm-api.yaml
+	# OUTPUT: redocly_cydarm-api.yaml
+	redocly join \
+		api-spec-converter_cydarm-api.yaml \
+		new-api.yaml \
+		--output ./redocly_cydarm-api.yaml
+	##### MODS directly in redocly_cydarm-api.yaml
+
+final.yaml: redocly_cydarm-api.yaml /src/cleanups/final.yq
+	# INPUT: redocly_cydarm-api.yaml, /src/cleanups/final.yq
+	# OUTPUT: final.yaml
+	# LogLevel is annotated as an integer but the API returns a string
+	yq --from-file /src/cleanups/final.yq redocly_cydarm-api.yaml > final.yaml
+
+redocly_cydarm-api-from-openapi-conversion.yaml: new-api.yaml go-swagger_converted.yaml
+	# INPUT: new-api.yaml, go-swagger_converted.yaml
+	# OUTPUT: redocly_cydarm-api-from-openapi-conversion.yaml
+	redocly join \
+		go-swagger_converted.yaml \
+		new-api.yaml \
+		--output ./redocly_cydarm-api-from-openapi-conversion.yaml
+
+redocly_cydarm-api.html: final.yaml
+	# INPUT: final.yaml
+	# OUTPUT: redocly_cydarm-api.html
+	redocly build-docs \
+		./final.yaml \
+		--output ./redocly_cydarm-api.html
+
+/out/cydarm-api-$(RELEASE_VERSION).html: redocly_cydarm-api.html
+	cp /build/redocly_cydarm-api.html /out/cydarm-api-$(RELEASE_VERSION).html
+
+/out/cydarm-api-$(RELEASE_VERSION).yaml: final.yaml
+	cp /build/final.yaml /out/cydarm-api-$(RELEASE_VERSION).yaml
+
+/out/openapi.yaml: 
+	# copy the most recent cydarm-api-v*.yaml to openapi.yaml
+	cp $(shell ls /out/cydarm-api-v*.yaml | sort -V | tail -n1) /out/openapi.yaml
+
+clean:
+	cd /build/ && find . -delete

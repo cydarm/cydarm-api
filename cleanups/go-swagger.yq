@@ -1,0 +1,53 @@
+### Fix schema issues with legacy api
+
+## connector/connector-type endpoints have been re-implemented in api-new but have conflicting tags
+## so update the tags to avoid conflicts, and add deprecation flag
+
+# api/api-integration.go: // swagger:operation GET /connector connector GetConnectors
+.paths."/connector".get.tags = ["connector__deprecated"] |
+.paths."/connector".get.deprecated = true |
+
+# api/api-integration.go: // swagger:operation POST /connector connector CreateConnector
+.paths."/connector".post.tags = ["connector__deprecated"] |
+.paths."/connector".post.deprecated = true |
+
+# api/api-integration.go: // swagger:operation GET /connector/{connectorId} connector GetConnector
+.paths."/connector/{connectorId}".get.tags = ["connector__deprecated"] |
+.paths."/connector/{connectorId}".get.deprecated = true |
+
+# api/api-integration.go: // swagger:operation DELETE /connector/{connectorId} connector DeleteConnector
+.paths."/connector/{connectorId}".delete.tags = ["connector__deprecated"] |
+.paths."/connector/{connectorId}".delete.deprecated = true |
+
+# api/api-integration.go: // swagger:operation PUT /connector/{connectorId} connector UpdateConnector
+.paths."/connector/{connectorId}".put.tags = ["connector__deprecated"] |
+.paths."/connector/{connectorId}".put.deprecated = true |
+
+# api/api-integration.go: // swagger:operation GET /connector-type connector GetConnectorTypes
+# this is also tagged wrong (connector instead of connector-type)
+.paths."/connector-type".get.tags = ["connector-type__deprecated"] |
+.paths."/connector-type".get.deprecated = true |
+
+# api/api-integration.go: // swagger:operation POST /connector-type connector PostConnectorType
+# this is also tagged wrong (connector instead of connector-type)
+.paths."/connector-type".post.tags = ["connector-type__deprecated"] |
+.paths."/connector-type".post.deprecated = true |
+
+# api/api-integration.go: // swagger:operation GET /connector-type/{connectorTypeId} connector GetConnectorType
+# this is also tagged wrong (connector instead of connector-type)
+.paths."/connector-type/{connectorTypeId}".get.tags = ["connector-type__deprecated"] |
+.paths."/connector-type/{connectorTypeId}".get.deprecated = true |
+
+# api/api-integration.go: // swagger:operation PUT /connector-type/{connectorTypeId} connector-type UpdateConnectorType
+.paths."/connector-type/{connectorTypeId}".put.tags = ["connector-type__deprecated"] |
+.paths."/connector-type/{connectorTypeId}".put.deprecated = true |
+
+
+## Fixing errors
+# api/api-integration.go: // swagger:operation POST /connector-type connector__deprecated PostConnectorType
+# => PostConnectorType should be CreateConnectorType
+.paths."/connector-type".post.operationId = "CreateConnectorType" |
+
+### END
+#Keep this here so each line can be terminated with |
+.

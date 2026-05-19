@@ -1,0 +1,24 @@
+services:
+  api-docs:
+    image: cydarm/api-docs:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      ssh:
+        - default
+      target: config
+
+    volumes:
+      - ./docs:/out
+      #- ./build:/build
+      - .:/src:ro
+      - gomodcache:/go/pkg/mod
+      - gocache:/go/cache
+      # saves having to checkout repos each time from scratch.
+      - repos:/repos
+
+volumes:
+  root-home:
+  gomodcache:
+  gocache:
+  repos:

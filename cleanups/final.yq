@@ -1,0 +1,61 @@
+### Fix schema issues
+
+# LogLevel is annotated as an integer but the API returns a string
+.components.schemas.LogLevel.type = "string" |
+del(.components.schemas.LogLevel.format) |
+
+### OperationId fields for:
+# event-trigger
+.paths."/v0.9/event-trigger".get.operationId = "GetEventTriggers" |
+.paths."/v0.9/event-trigger/{uuid}".get.operationId = "GetEventTrigger" |
+.paths."/v0.9/event-trigger".post.operationId = "CreateEventTrigger" |
+.paths."/v0.9/event-trigger/{uuid}".patch.operationId = "UpdateEventTrigger" |
+.paths."/v0.9/event-trigger/{uuid}".delete.operationId = "DeleteEventTrigger" |
+
+## connector-operation-type
+.paths."/v0.9/connector-operation-type".get.operationId = "GetConnectorOperationTypes" |
+.paths."/v0.9/connector-operation-type/{uuid}".get.operationId = "GetConnectorOperationType" |
+.paths."/v0.9/connector-operation-type".post.operationId = "CreateConnectorOperationType" |
+.paths."/v0.9/connector-operation-type/{uuid}".put.operationId = "UpdateConnectorOperationType" |
+.paths."/v0.9/connector-operation-type/{uuid}".delete.operationId = "DeleteConnectorOperationType" |
+
+### connector-type has incorrect tags, operationIds
+.paths."/connector-type".get.tags = ["connector-type__deprecated"] |
+.paths."/connector-type".post.tags = ["connector-type__deprecated"] |
+.paths."/connector-type/{connectorTypeId}".get.tags = ["connector-type__deprecated"] |
+
+# api/api-integration.go:
+#      // swagger:operation POST /connector-type connector__deprecated PostConnectorType
+# => PostConnectorType should be CreateConnectorType
+.paths."/connector-type".post.operationId = "CreateConnectorType" |
+
+
+### Deprecations
+# /connector & /connector-type endpoints moved to new api
+.paths."/connector".get.deprecated = true |
+.paths."/connector".post.deprecated = true |
+.paths."/connector/{connectorId}".get.deprecated = true |
+.paths."/connector/{connectorId}".delete.deprecated = true |
+.paths."/connector/{connectorId}".put.deprecated = true |
+.paths."/connector-type".get.deprecated = true |
+.paths."/connector-type".post.deprecated = true |
+.paths."/connector-type/{connectorTypeId}".get.deprecated = true |
+.paths."/connector-type/{connectorTypeId}".put.deprecated = true |
+
+### Cosmetic formatting fixes
+
+# Sort tags alphabetically
+(.x-tagGroups[0].tags)=(.x-tagGroups[0].tags | sort) |
+
+# Update the API description to include this code block:
+# Most API endpoints require a session token (JWT) for authentication. To obtain a session token, you can use the [POST /auth/password endpoint](#operation/doAuthWithPassword) operation
+.info.description = (.info.description + "\n\nMost API endpoints require a session token (JWT) for authentication. To obtain a session token, you can use the [`POST /auth/password`](#operation/doAuthWithPassword) operation") |
+
+# Update the POST /auth/password description to include an example of how to construct the payload, and note that the username and password must be base64 encoded.
+.paths."/auth/password".post.description = (.paths."/auth/password".post.description + "\n\nUsername and Password in the json payload must be base64 encoded.\n\nFor example: If the username was `john_smith` and the password was `P@s5word!`, then the payload would need to look the like following:\n\n```json\n{\"username\":\"am9obl9zbWl0aA==\",\"password\":\"UEBzNXdvcmQh\"}\n```") |
+
+
+
+### END
+#Keep this here so each line can be terminated with |
+.
