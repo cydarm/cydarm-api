@@ -3,7 +3,7 @@ info:
   contact:
     email: support@cydarm.com
     name: Cydarm Support
-    url: https://www.cydarm.com
+    url: https://www.cydarm.com/
   description: Cydarm Cybersecurity Incident Response Management Platform
   license:
     name: Copyright 2026 Cydarm Technologies Pty Ltd
@@ -12,111 +12,111 @@ info:
 servers:
   - url: https://localhost/cydarm-api
 tags:
-  - name: cydarm-api-3.0_acl
+  - name: acl
     x-displayName: acl
-  - name: cydarm-api-3.0_case
+  - name: case
     x-displayName: case
-  - name: cydarm-api-3.0_actuator
+  - name: actuator
     x-displayName: actuator
-  - name: cydarm-api-3.0_auth
+  - name: auth
     x-displayName: auth
-  - name: cydarm-api-3.0_case-cache
+  - name: case-cache
     x-displayName: case-cache
-  - name: cydarm-api-3.0_case-severity
+  - name: case-severity
     x-displayName: case-severity
-  - name: cydarm-api-3.0_case-status
+  - name: case-status
     x-displayName: case-status
-  - name: cydarm-api-3.0_case-tag
+  - name: case-tag
     x-displayName: case-tag
-  - name: cydarm-api-3.0_sla
+  - name: sla
     x-displayName: sla
-  - name: cydarm-api-3.0_data
+  - name: data
     x-displayName: data
-  - name: cydarm-api-3.0_connector
+  - name: connector
     x-displayName: connector
-  - name: cydarm-api-3.0_connector-type
+  - name: connector-type
     x-displayName: connector-type
-  - name: cydarm-api-3.0_form
+  - name: form
     x-displayName: form
-  - name: cydarm-api-3.0_group
+  - name: group
     x-displayName: group
-  - name: cydarm-api-3.0_meta
+  - name: meta
     x-displayName: meta
-  - name: cydarm-api-3.0_metrics
+  - name: metrics
     x-displayName: metrics
-  - name: cydarm-api-3.0_report
+  - name: report
     x-displayName: report
-  - name: cydarm-api-3.0_notify
+  - name: notify
     x-displayName: notify
-  - name: cydarm-api-3.0_org
+  - name: org
     x-displayName: org
-  - name: cydarm-api-3.0_org-prop
+  - name: org-prop
     x-displayName: org-prop
-  - name: cydarm-api-3.0_playbook
+  - name: playbook
     x-displayName: playbook
-  - name: cydarm-api-3.0_playbook-action
+  - name: playbook-action
     x-displayName: playbook-action
-  - name: cydarm-api-3.0_resource
+  - name: resource
     x-displayName: resource
-  - name: cydarm-api-3.0_stix
+  - name: stix
     x-displayName: stix
-  - name: cydarm-api-3.0_sys-prop
+  - name: sys-prop
     x-displayName: sys-prop
-  - name: cydarm-api-3.0_third-party
+  - name: third-party
     x-displayName: third-party
-  - name: cydarm-api-3.0_user
+  - name: user
     x-displayName: user
-  - name: cydarm-api-3.0_user-prop
+  - name: user-prop
     x-displayName: user-prop
   - description: Editable knowledge base
-    name: openapi-v09_wiki
+    name: v09_wiki
     x-displayName: wiki
   - description: Risk register
-    name: openapi-v09_risk
+    name: v09_risk
     x-displayName: risk
   - description: Connector types
-    name: openapi-v09_connector-type
+    name: v09_connector-type
     x-displayName: connector-type
   - description: Connector operation types
-    name: openapi-v09_connector-operation-type
+    name: v09_connector-operation-type
     x-displayName: connector-operation-type
   - description: Event triggers
-    name: openapi-v09_event-trigger
+    name: v09_event-trigger
     x-displayName: event-trigger
   - description: Cases
-    name: openapi-v09_case
+    name: v09_case
     x-displayName: case
   - description: Case data
-    name: openapi-v09_case-data
+    name: v09_case-data
     x-displayName: case-data
   - description: Case reports
-    name: openapi-v09_case-report
+    name: v09_case-report
     x-displayName: case-report
   - description: Atomic operations
-    name: openapi-v09_operations
+    name: v09_operations
     x-displayName: operations
   - description: System properties
-    name: openapi-v09_system-property
+    name: v09_system-property
     x-displayName: system-property
   - description: Service Level Agreements
-    name: openapi-v09_sla
+    name: v09_sla
     x-displayName: sla
   - description: Case SLAs and warnings
-    name: openapi-v09_case-sla
+    name: v09_case-sla
     x-displayName: case-sla
   - description: SLA warning definitions
-    name: openapi-v09_sla-warning
+    name: v09_sla-warning
     x-displayName: sla-warning
   - description: Chart visualizations
-    name: openapi-v09_visualization
+    name: v09_visualization
     x-displayName: visualization
   - description: Visualization catalog metadata
-    name: openapi-v09_visualization-catalog
+    name: v09_visualization-catalog
     x-displayName: visualization-catalog
   - description: Bulk import and export of tags and metadata
-    name: openapi-v09_bulk-import-export
+    name: v09_bulk-import-export
     x-displayName: bulk-import-export
-  - name: openapi-v09_connector
+  - name: v09_connector
     x-displayName: connector
 paths:
   /acl:
@@ -137,7 +137,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_acl
+        - acl
       operationId: GetAcls
       summary: Gets a list of ACLs.
       security:
@@ -163,7 +163,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_acl
+        - acl
       operationId: CreateAcl
       requestBody:
         content:
@@ -193,7 +193,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_acl
+        - acl
       operationId: SearchAcl
       requestBody:
         content:
@@ -228,7 +228,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_acl
+        - acl
       operationId: GetDefaultAclForSession
       summary: Gets the default ACL for the current session.
       security:
@@ -252,7 +252,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_acl
+        - acl
       operationId: DeleteAcl
       summary: Deletes an ACL.
       security:
@@ -279,7 +279,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_acl
+        - acl
       operationId: GetAcl
       summary: Gets an ACL.
       security:
@@ -317,7 +317,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetActionInstanceData
       summary: GET a data item on a case or case playbook action.
       security:
@@ -352,7 +352,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CreateActionInstanceData
       requestBody:
         content:
@@ -382,7 +382,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_actuator
+        - actuator
       description: Gets all actuators
       operationId: GetActuators
       security:
@@ -402,7 +402,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_actuator
+        - actuator
       description: Creates an actuator
       operationId: CreateActuator
       requestBody:
@@ -437,7 +437,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_actuator
+        - actuator
       description: Gets specified actuator
       operationId: GetActuator
       security:
@@ -464,7 +464,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_actuator
+        - actuator
       description: Updates the specified actuator
       operationId: UpdateActuator
       requestBody:
@@ -495,7 +495,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_actuator
+        - actuator
       description: Sets the actuator's last heartbeat time
       operationId: ActuatorHeartbeat
       security:
@@ -527,7 +527,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Creates a session by using username and password in the request body
       operationId: doAuthWithPassword
       requestBody:
@@ -573,7 +573,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Refresh session authorization
       operationId: doAuthRefresh
       security:
@@ -606,7 +606,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Gets a URL for SAML authentication
       operationId: getSamlUrl
       security:
@@ -637,7 +637,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Creates a session based on a SAML assertion of an external IdP
       operationId: doAuthWithSamlCallback
       requestBody:
@@ -683,7 +683,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Errors
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Ends the current session
       operationId: endSession
       security:
@@ -712,7 +712,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Gets user information for the current session
       operationId: getSessionInfo
       security:
@@ -742,7 +742,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Delete user TOTP information
       operationId: DeleteTotpConfig
       security:
@@ -771,7 +771,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Gets user TOTP information
       operationId: GetTotpConfig
       security:
@@ -806,7 +806,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: Initialises a TOTP enrolment, returns the secret and QR code
       operationId: InitialiseTotpEnrolment
       security:
@@ -843,7 +843,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_auth
+        - auth
       description: >-
         Validates an initialised but incomplete TOTP enrolment with the supplied
         QR code
@@ -961,7 +961,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCasesFiltered
       summary: Gets a list of cases, using filtering and sorting.
       security:
@@ -985,7 +985,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CreateCase
       requestBody:
         content:
@@ -1017,7 +1017,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-cache
+        - case-cache
       description: Gets a list of cases from the cache
       operationId: GetCaseCache
       security:
@@ -1041,7 +1041,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-cache
+        - case-cache
       description: Creates a case cache entry
       operationId: AddCaseCache
       requestBody:
@@ -1074,7 +1074,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-cache
+        - case-cache
       description: Deletes a case from the cache
       operationId: DeleteCaseCache
       security:
@@ -1097,7 +1097,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-severity
+        - case-severity
       operationId: GetSeverity
       summary: Gets a list of case severities.
       security:
@@ -1122,7 +1122,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-status
+        - case-status
       operationId: GetStatus
       summary: Gets a list of case statuses.
       security:
@@ -1145,7 +1145,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-tag
+        - case-tag
       operationId: GetCaseTags
       summary: Gets a list of case tags.
       security:
@@ -1165,7 +1165,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-tag
+        - case-tag
       operationId: CreateCaseTag
       requestBody:
         $ref: '#/components/requestBodies/caseTag'
@@ -1191,7 +1191,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-tag
+        - case-tag
       operationId: DeleteCaseTag
       summary: Delete a caseTag .
       security:
@@ -1218,7 +1218,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-tag
+        - case-tag
       operationId: GetCaseTagWithUuid
       summary: Retrieve case tag with uuid.
       security:
@@ -1251,7 +1251,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-tag
+        - case-tag
       operationId: UpdateCaseTag
       requestBody:
         content:
@@ -1292,7 +1292,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCaseByLocator
       summary: Gets a case by locator.
       security:
@@ -1317,7 +1317,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCaseQuickSearch
       requestBody:
         content:
@@ -1356,7 +1356,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCase
       summary: Gets a case.
       security:
@@ -1385,7 +1385,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: UpdateCase
       requestBody:
         content:
@@ -1422,7 +1422,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCaseActions
       summary: Gets a list of action for a case.
       security:
@@ -1452,7 +1452,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: RemoveCaseAction
       summary: Remove an action from a case.
       security:
@@ -1481,7 +1481,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: UpdateCaseAction
       requestBody:
         content:
@@ -1522,7 +1522,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: AddCaseAction
       summary: Add an action to a case.
       security:
@@ -1559,7 +1559,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCaseDataList
       summary: Gets a list of data items for a case.
       security:
@@ -1594,7 +1594,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CreateCaseData
       requestBody:
         content:
@@ -1641,7 +1641,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       deprecated: true
       description: >-
         This endpoint is deprecated. Use endpoint /data/{parentStudUuid}
@@ -1682,7 +1682,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: UpdateCaseHistory
       requestBody:
         content:
@@ -1725,7 +1725,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CreateHistoricCaseData
       requestBody:
         content:
@@ -1768,7 +1768,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       description: Returns the UUID of all case groups that contain a given case
       operationId: GetGroupsContainingCase
       security:
@@ -1798,7 +1798,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CaseGroupRemoveMember
       summary: Removes a case member from a case.
       security:
@@ -1833,7 +1833,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CaseGroupAddMember
       summary: Adds a case as a member of another case.
       security:
@@ -1861,7 +1861,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: UpdateCaseMeta
       requestBody:
         content:
@@ -1898,7 +1898,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCasePlaybooks
       summary: Gets a list of playbooks for a case.
       security:
@@ -1928,7 +1928,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: DeleteCasePlaybook
       summary: Removes a playbook from a case.
       security:
@@ -1965,7 +1965,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCasePlaybook
       summary: Gets the status of each action, for a playbook on a given case.
       security:
@@ -1998,7 +1998,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CreateCasePlaybook
       summary: Creates a playbook.
       security:
@@ -2027,7 +2027,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: UpdateCasePlaybook
       requestBody:
         content:
@@ -2070,7 +2070,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: PutCasePlaybookAction
       requestBody:
         content:
@@ -2119,7 +2119,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: DeleteCasePlaybookActionTag
       summary: Removes a tag from a case playbook action.
       security:
@@ -2160,7 +2160,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: AddCasePlaybookActionTag
       summary: Add a tag from a case playbook action.
       security:
@@ -2194,7 +2194,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sla
+        - sla
       operationId: GetCaseSlas
       summary: Gets a list of SLAs for a case.
       security:
@@ -2230,7 +2230,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sla
+        - sla
       operationId: GetCaseSlaWarnings
       summary: Gets a list of SLA warnings for a case.
       security:
@@ -2268,7 +2268,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCaseStix
       summary: Gets a list of STIX data items for a case.
       security:
@@ -2299,7 +2299,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CreateCaseStixData
       requestBody:
         content:
@@ -2344,7 +2344,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: CreateCaseStixDataUnderParent
       requestBody:
         content:
@@ -2375,7 +2375,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-tag
+        - case-tag
       operationId: RemoveCaseTag
       requestBody:
         content:
@@ -2411,7 +2411,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-tag
+        - case-tag
       operationId: GetTagsForCase
       requestBody:
         content:
@@ -2447,7 +2447,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case-tag
+        - case-tag
       operationId: AddCaseTag
       requestBody:
         content:
@@ -2478,7 +2478,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_data
+        - data
       operationId: RemoveWatcherFromCase
       summary: Removes a watcher from a case.
       security:
@@ -2507,7 +2507,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: GetCaseWatchers
       summary: Gets a list of watchers for a case.
       security:
@@ -2536,7 +2536,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_case
+        - case
       operationId: AddWatcherToCase
       requestBody:
         content:
@@ -2565,7 +2565,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector
+        - connector
       description: Gets all connectors
       operationId: GetConnectors
       security:
@@ -2585,7 +2585,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector
+        - connector
       description: Creates a connector
       operationId: CreateConnector
       requestBody:
@@ -2617,7 +2617,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector
+        - connector
       description: Gets all connector types
       operationId: GetConnectorTypes
       security:
@@ -2637,7 +2637,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector
+        - connector
       description: Creates a connector type
       operationId: PostConnectorType
       requestBody:
@@ -2672,7 +2672,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector
+        - connector
       description: Gets the specified connector type
       operationId: GetConnectorType
       security:
@@ -2695,7 +2695,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector-type
+        - connector-type
       description: Updates the specified connector
       operationId: UpdateConnectorType
       requestBody:
@@ -2726,7 +2726,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector
+        - connector
       description: Deletes the specified connector
       operationId: DeleteConnector
       security:
@@ -2753,7 +2753,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector
+        - connector
       description: Gets specified connector
       operationId: GetConnector
       security:
@@ -2776,7 +2776,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_connector
+        - connector
       description: Updates the specified connector
       operationId: UpdateConnector
       requestBody:
@@ -2823,7 +2823,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_data
+        - data
       operationId: GetDataObjectsByUuidList
       summary: Gets a list of data object.
       security:
@@ -2853,7 +2853,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_data
+        - data
       operationId: DeleteData
       summary: Deletes a data item.
       security:
@@ -2886,7 +2886,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_data
+        - data
       operationId: GetDataObject
       summary: Gets a data object.
       security:
@@ -2919,7 +2919,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_data
+        - data
       operationId: PostDataReply
       requestBody:
         content:
@@ -2959,7 +2959,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_data
+        - data
       operationId: UpdateData
       requestBody:
         content:
@@ -2998,7 +2998,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_data
+        - data
       operationId: GetDataFile
       summary: Gets a data file for download.
       security:
@@ -3021,7 +3021,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_form
+        - form
       operationId: GetForms
       summary: Gets a list of forms.
       security:
@@ -3041,7 +3041,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_form
+        - form
       operationId: CreateForm
       requestBody:
         content:
@@ -3076,7 +3076,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_form
+        - form
       operationId: DeleteForm
       summary: Delete a form.
       security:
@@ -3103,7 +3103,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_form
+        - form
       operationId: UpdateForm
       requestBody:
         content:
@@ -3133,7 +3133,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: GetGroups
       summary: Gets a list of groups.
       security:
@@ -3155,7 +3155,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: CreateGroup
       requestBody:
         content:
@@ -3183,7 +3183,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: GetGroupGraph
       summary: Gets the group graph.
       security:
@@ -3213,7 +3213,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: GetGroupGroupMembers
       summary: Gets the group members of a group.
       security:
@@ -3243,7 +3243,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: RemoveGroupFromGroup
       summary: Removes a group from a group.
       security:
@@ -3276,7 +3276,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: AddGroupToGroup
       summary: Adds a group to another group.
       security:
@@ -3310,7 +3310,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: GetGroupUserMembers
       summary: Gets the user members of a group.
       security:
@@ -3340,7 +3340,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: RemoveUserFromGroup
       summary: Removes a user from a group.
       security:
@@ -3373,7 +3373,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_group
+        - group
       operationId: AddUserToGroup
       summary: Add a user to a group.
       security:
@@ -3398,7 +3398,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_meta
+        - meta
       operationId: GetMetas
       summary: Gets a list of metadata fields.
       security:
@@ -3422,7 +3422,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_meta
+        - meta
       operationId: CreateMeta
       requestBody:
         content:
@@ -3459,7 +3459,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_meta
+        - meta
       operationId: DeleteMeta
       summary: Deletes a metadata item.
       security:
@@ -3488,7 +3488,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_meta
+        - meta
       operationId: UpdateMeta
       requestBody:
         content:
@@ -3529,7 +3529,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_metrics
+        - metrics
       description: Gets a metrics report on cases. (This endpoint is currently disabled)
       operationId: GetMetricsCases
       security:
@@ -3585,7 +3585,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_metrics
+        - metrics
       operationId: GetOpenCloseCases
       summary: Gets a metrics report on cases opened versus closed.
       security:
@@ -3627,7 +3627,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_metrics
+        - metrics
       operationId: GetMetricsStatus
       summary: Gets a metrics report on case status timing.
       security:
@@ -3650,7 +3650,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_report
+        - report
       operationId: GetTimeToStateReport
       requestBody:
         content:
@@ -3677,7 +3677,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_metrics
+        - metrics
       description: Gets a metrics report on users. (This endpoint is currently disabled)
       operationId: GetMetricsUsers
       requestBody:
@@ -3707,7 +3707,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_notify
+        - notify
       operationId: NotifyService
       summary: Sends a notification to a third-party service.
       security:
@@ -3737,7 +3737,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_notify
+        - notify
       description: Gets all error messages for the supplied consumer
       operationId: GetErrorMessages
       security:
@@ -3760,7 +3760,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_notify
+        - notify
       description: Posts an error message for the specified consumer
       operationId: PostErrorMessage
       security:
@@ -3791,7 +3791,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_notify
+        - notify
       description: Deletes the error msg for the specified consumer
       operationId: DeleteErrorMessage
       security:
@@ -3838,7 +3838,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_notify
+        - notify
       description: >-
         By default returns 1 message (oldest) with a JWT generated. When
         filter[eventType] is set,
@@ -3877,7 +3877,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_notify
+        - notify
       description: Deletes the msg for the specified consumer
       operationId: DeleteMessage
       security:
@@ -3902,7 +3902,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org
+        - org
       operationId: GetOrgs
       summary: Gets a list of orgs.
       security:
@@ -3922,7 +3922,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org
+        - org
       operationId: CreateOrg
       requestBody:
         content:
@@ -3967,7 +3967,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org-prop
+        - org-prop
       operationId: GetOrgProps
       summary: Gets a list of org properties.
       security:
@@ -4003,7 +4003,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org-prop
+        - org-prop
       operationId: DeleteOrgProp
       summary: Deletes an org property.
       security:
@@ -4042,7 +4042,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org-prop
+        - org-prop
       operationId: GetOrgProp
       summary: Gets an org property.
       security:
@@ -4081,7 +4081,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org-prop
+        - org-prop
       operationId: CreateOrgProp
       requestBody:
         content:
@@ -4121,7 +4121,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org-prop
+        - org-prop
       operationId: UpdateOrgProp
       requestBody:
         content:
@@ -4152,7 +4152,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org
+        - org
       operationId: DeleteOrg
       summary: Deletes an org.
       security:
@@ -4179,7 +4179,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org
+        - org
       operationId: GetOrg
       summary: Gets an org.
       security:
@@ -4202,7 +4202,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_org
+        - org
       operationId: UpdateOrg
       requestBody:
         content:
@@ -4238,7 +4238,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: GetPlaybooks
       summary: Gets a list of playbooks.
       security:
@@ -4258,7 +4258,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: CreatePlaybook
       requestBody:
         content:
@@ -4290,7 +4290,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook-action
+        - playbook-action
       operationId: GetPlaybookActions
       summary: Gets a list of playbook actions.
       security:
@@ -4310,7 +4310,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook-action
+        - playbook-action
       operationId: CreatePlaybookAction
       requestBody:
         content:
@@ -4341,7 +4341,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook-action
+        - playbook-action
       operationId: DeletePlaybookAction
       summary: Deletes a playbook action.
       security:
@@ -4368,7 +4368,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook-action
+        - playbook-action
       operationId: GetPlaybookAction
       summary: Gets a playbook action.
       security:
@@ -4391,7 +4391,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook-action
+        - playbook-action
       operationId: UpdatePlaybookAction
       requestBody:
         content:
@@ -4428,7 +4428,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook-action
+        - playbook-action
       operationId: DeletePlaybookActionTag
       summary: Deletes a playbook action tag map.
       security:
@@ -4457,7 +4457,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook-action
+        - playbook-action
       operationId: CreatePlaybookActionTag
       summary: Create a playbook action tag map.
       security:
@@ -4493,7 +4493,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: CreatePlaybookFile
       requestBody:
         content:
@@ -4528,7 +4528,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: ExportPlaybook
       summary: Exporting a playbook to file.
       security:
@@ -4557,7 +4557,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: DeletePlaybook
       summary: Deletes a playbook.
       security:
@@ -4584,7 +4584,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: GetPlaybook
       summary: Gets a playbook.
       security:
@@ -4611,7 +4611,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: DuplicatePlaybook
       summary: Duplicate a playbook.
       security:
@@ -4634,7 +4634,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: UpdatePlaybook
       requestBody:
         content:
@@ -4671,7 +4671,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: RemoveTagFromPlaybook
       summary: Removes a tag from a playbook.
       security:
@@ -4700,7 +4700,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: AddTagToPlaybook
       summary: Adds a tag to a playbook.
       security:
@@ -4735,7 +4735,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: RemoveActionFromPlaybook
       summary: Removes an action from a playbook.
       security:
@@ -4764,7 +4764,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_playbook
+        - playbook
       operationId: AddActionToPlaybook
       requestBody:
         content:
@@ -4800,7 +4800,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_report
+        - report
       description: Generates an analyst report for given users, over a time period.
       operationId: GetAnalystReport
       requestBody:
@@ -4839,7 +4839,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_report
+        - report
       operationId: GetCaseReport
       requestBody:
         content:
@@ -4870,7 +4870,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_report
+        - report
       operationId: GetGroupReport
       summary: Generates a summary of current groups.
       security:
@@ -4893,7 +4893,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_report
+        - report
       operationId: GetHeatMapReport
       requestBody:
         content:
@@ -4932,7 +4932,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_report
+        - report
       operationId: GetCaseDetailsReport
       requestBody:
         content:
@@ -4983,7 +4983,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_report
+        - report
       operationId: GetSummaryReport
       requestBody:
         content:
@@ -5012,7 +5012,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_report
+        - report
       operationId: GetUserReport
       summary: Generates a summary of current user accounts.
       security:
@@ -5039,7 +5039,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_resource
+        - resource
       operationId: GetResources
       summary: Gets a list of resources.
       security:
@@ -5067,7 +5067,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_resource
+        - resource
       description: Updates a resource
       operationId: UpdateResource
       requestBody:
@@ -5107,7 +5107,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sla
+        - sla
       operationId: GetSlas
       summary: Gets a list of SLAs.
       security:
@@ -5131,7 +5131,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sla
+        - sla
       description: Creates an SLAs
       operationId: CreateSla
       requestBody:
@@ -5166,7 +5166,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sla
+        - sla
       operationId: DeleteSla
       summary: Deletes an SLA.
       security:
@@ -5193,7 +5193,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sla
+        - sla
       operationId: UpdateSla
       requestBody:
         content:
@@ -5225,7 +5225,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: GetAssetsFromStix
       summary: Get a list of Assets.
       security:
@@ -5249,7 +5249,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: CreateAsset
       requestBody:
         content:
@@ -5283,7 +5283,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       description: >-
         CSV requires a header row in the following order: Type, Name, Email,
         Phone, Organisation
@@ -5330,7 +5330,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: DeleteAsset
       summary: Deletes a asset.
       security:
@@ -5358,7 +5358,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: UpdateAssetStixObject
       requestBody:
         content:
@@ -5390,7 +5390,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: GetAllContacts
       summary: Get a list of Contacts.
       security:
@@ -5406,7 +5406,7 @@ paths:
         '401':
           description: Invalid authentication for this request.
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: CreateContact
       requestBody:
         content:
@@ -5440,7 +5440,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       description: >-
         CSV requires a header row in the following order: Type, Name, Email,
         Phone, Organisation
@@ -5487,7 +5487,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: DeleteContact
       summary: Deletes a contact.
       security:
@@ -5514,7 +5514,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: UpdateSContactStixObject
       requestBody:
         content:
@@ -5551,7 +5551,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_stix
+        - stix
       operationId: UpdateStix
       requestBody:
         content:
@@ -5583,7 +5583,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sys-prop
+        - sys-prop
       operationId: GetSysProps
       summary: Gets a list of system properties.
       security:
@@ -5603,7 +5603,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sys-prop
+        - sys-prop
       operationId: CreateSysProp
       requestBody:
         content:
@@ -5634,7 +5634,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sys-prop
+        - sys-prop
       operationId: DeleteSysProp
       summary: Deletes a system property.
       security:
@@ -5661,7 +5661,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sys-prop
+        - sys-prop
       operationId: GetSysProp
       summary: Gets a system property.
       security:
@@ -5684,7 +5684,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_sys-prop
+        - sys-prop
       operationId: UpdateSysProp
       requestBody:
         content:
@@ -5723,7 +5723,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_third-party
+        - third-party
       operationId: GetThirdPartyDetailsAndCache
       summary: Fetches cache for third party integration cache.
       security:
@@ -5750,7 +5750,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_third-party
+        - third-party
       operationId: CreateThirdPartyCacheDetails
       summary: Fetches cache for third party integration cache.
       security:
@@ -5773,7 +5773,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_third-party
+        - third-party
       operationId: UpdateThirdPartyCacheDetails
       requestBody:
         content:
@@ -5807,7 +5807,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_third-party
+        - third-party
       operationId: CreateThirdPartyCacheItem
       requestBody:
         content:
@@ -5843,7 +5843,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_third-party
+        - third-party
       operationId: DeleteThirdPartyCacheItem
       summary: Deletes an item from the third party cache.
       security:
@@ -5872,7 +5872,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_third-party
+        - third-party
       operationId: UpdateThirdPartyCacheItem
       requestBody:
         content:
@@ -5909,7 +5909,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: GetUsers
       summary: Gets a list of users.
       security:
@@ -5933,7 +5933,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: CreateUser
       requestBody:
         content:
@@ -5978,7 +5978,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user-prop
+        - user-prop
       operationId: GetUserProps
       summary: Gets a list of user properties.
       security:
@@ -6014,7 +6014,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user-prop
+        - user-prop
       operationId: DeleteUserProp
       summary: Deletes a user property.
       security:
@@ -6053,7 +6053,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user-prop
+        - user-prop
       operationId: GetUserProp
       summary: Gets a user property.
       security:
@@ -6092,7 +6092,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user-prop
+        - user-prop
       operationId: CreateUserProp
       requestBody:
         content:
@@ -6132,7 +6132,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user-prop
+        - user-prop
       operationId: UpdateUserProp
       requestBody:
         content:
@@ -6169,7 +6169,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: DeleteUser
       summary: Deletes a user.
       security:
@@ -6202,7 +6202,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error.
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: GetUser
       summary: Gets a user.
       security:
@@ -6233,7 +6233,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: UpdateUser
       requestBody:
         content:
@@ -6278,7 +6278,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: GetUserPlaybookActions
       summary: Gets a list of pending playbook actions assigned to the user.
       security:
@@ -6310,7 +6310,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: UpdateUserPassword
       requestBody:
         content:
@@ -6347,7 +6347,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: ReactivateUserAccount
       summary: Reactivate a user account.
       security:
@@ -6383,7 +6383,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       tags:
-        - cydarm-api-3.0_user
+        - user
       operationId: GetUserWatching
       summary: Gets a list of cases the user watches.
       security:
@@ -6426,7 +6426,7 @@ paths:
           description: A list of pages matching the search query
       summary: Search wiki for pages
       tags:
-        - openapi-v09_wiki
+        - v09_wiki
   /v0.9/wiki-page:
     get:
       parameters:
@@ -6459,7 +6459,7 @@ paths:
           description: The list of pages
       summary: Get all wiki pages
       tags:
-        - openapi-v09_wiki
+        - v09_wiki
     post:
       requestBody:
         content:
@@ -6475,7 +6475,7 @@ paths:
           description: The newly created page
       summary: Create a new wiki page
       tags:
-        - openapi-v09_wiki
+        - v09_wiki
   /v0.9/wiki-page/{uuid}:
     delete:
       parameters:
@@ -6495,7 +6495,7 @@ paths:
           description: Confirmation of deletion
       summary: Delete an existing wiki page
       tags:
-        - openapi-v09_wiki
+        - v09_wiki
     get:
       parameters:
         - description: The resource UUID
@@ -6522,7 +6522,7 @@ paths:
           description: The content of the specified page
       summary: Get the content of a wiki page
       tags:
-        - openapi-v09_wiki
+        - v09_wiki
     patch:
       parameters:
         - description: The resource UUID
@@ -6546,7 +6546,7 @@ paths:
           description: The updated page
       summary: Partially update a wiki page (including relative-position move)
       tags:
-        - openapi-v09_wiki
+        - v09_wiki
     put:
       parameters:
         - description: The resource UUID
@@ -6570,7 +6570,7 @@ paths:
           description: The updated page
       summary: Replace an existing wiki page
       tags:
-        - openapi-v09_wiki
+        - v09_wiki
   /v0.9/connector:
     get:
       parameters:
@@ -6603,7 +6603,7 @@ paths:
           description: The list of connectors
       summary: Get all connectors
       tags:
-        - openapi-v09_connector
+        - v09_connector
     post:
       requestBody:
         content:
@@ -6619,7 +6619,7 @@ paths:
           description: The newly created connector
       summary: Create a new connector
       tags:
-        - openapi-v09_connector
+        - v09_connector
   /v0.9/connector/{uuid}:
     delete:
       parameters:
@@ -6635,7 +6635,7 @@ paths:
           description: Confirmation of deletion
       summary: Delete an existing connector
       tags:
-        - openapi-v09_connector
+        - v09_connector
     get:
       parameters:
         - description: The resource UUID
@@ -6662,7 +6662,7 @@ paths:
           description: The connector
       summary: Get the specified connector
       tags:
-        - openapi-v09_connector
+        - v09_connector
     patch:
       parameters:
         - description: The resource UUID
@@ -6686,7 +6686,7 @@ paths:
           description: The updated connector
       summary: Update an existing connector
       tags:
-        - openapi-v09_connector
+        - v09_connector
   /v0.9/connector-type:
     get:
       parameters:
@@ -6719,7 +6719,7 @@ paths:
           description: The list of connector types
       summary: Get all connector types
       tags:
-        - openapi-v09_connector-type
+        - v09_connector-type
     post:
       requestBody:
         content:
@@ -6735,7 +6735,7 @@ paths:
           description: The created connector type
       summary: Create a new connector type
       tags:
-        - openapi-v09_connector-type
+        - v09_connector-type
   /v0.9/connector-type/{uuid}:
     get:
       parameters:
@@ -6763,7 +6763,7 @@ paths:
           description: The connector type
       summary: Get the specified connector
       tags:
-        - openapi-v09_connector-type
+        - v09_connector-type
     patch:
       parameters:
         - description: The resource UUID
@@ -6787,7 +6787,7 @@ paths:
           description: The updated connector
       summary: Update an existing connector type
       tags:
-        - openapi-v09_connector-type
+        - v09_connector-type
   /v0.9/connector-operation-type:
     get:
       parameters:
@@ -6812,7 +6812,7 @@ paths:
           description: The list of connector operation types
       summary: Get all connector operation types
       tags:
-        - openapi-v09_connector-operation-type
+        - v09_connector-operation-type
     post:
       requestBody:
         content:
@@ -6828,7 +6828,7 @@ paths:
           description: The newly created connector operation type
       summary: Create a new connector operation type
       tags:
-        - openapi-v09_connector-operation-type
+        - v09_connector-operation-type
   /v0.9/connector-operation-type/{uuid}:
     delete:
       parameters:
@@ -6844,7 +6844,7 @@ paths:
           description: Confirmation of deletion
       summary: Delete an existing connector operation type
       tags:
-        - openapi-v09_connector-operation-type
+        - v09_connector-operation-type
     get:
       parameters:
         - description: The resource UUID
@@ -6863,7 +6863,7 @@ paths:
           description: The connector operation type
       summary: Get the specified connector operation type
       tags:
-        - openapi-v09_connector-operation-type
+        - v09_connector-operation-type
     put:
       parameters:
         - description: The resource UUID
@@ -6887,7 +6887,7 @@ paths:
           description: The updated connector operation type
       summary: Update an existing connector operation type
       tags:
-        - openapi-v09_connector-operation-type
+        - v09_connector-operation-type
   /v0.9/event-trigger:
     get:
       parameters:
@@ -6912,7 +6912,7 @@ paths:
           description: The list of event triggers
       summary: Get all event triggers
       tags:
-        - openapi-v09_event-trigger
+        - v09_event-trigger
     post:
       requestBody:
         content:
@@ -6928,7 +6928,7 @@ paths:
           description: The newly created event trigger
       summary: Create a new event trigger
       tags:
-        - openapi-v09_event-trigger
+        - v09_event-trigger
   /v0.9/event-trigger/{uuid}:
     delete:
       parameters:
@@ -6944,7 +6944,7 @@ paths:
           description: The event trigger was deleted successfully
       summary: Delete an event trigger
       tags:
-        - openapi-v09_event-trigger
+        - v09_event-trigger
     get:
       parameters:
         - description: The resource UUID
@@ -6963,7 +6963,7 @@ paths:
           description: The specified event trigger
       summary: Get the specified event trigger
       tags:
-        - openapi-v09_event-trigger
+        - v09_event-trigger
     patch:
       parameters:
         - description: The resource UUID
@@ -6987,7 +6987,7 @@ paths:
           description: The updated event trigger
       summary: Edit an event trigger
       tags:
-        - openapi-v09_event-trigger
+        - v09_event-trigger
   /v0.9/risk:
     get:
       parameters:
@@ -7029,7 +7029,7 @@ paths:
           description: The list of risks and their latest assessments
       summary: Get all risks and their latest assessments
       tags:
-        - openapi-v09_risk
+        - v09_risk
     post:
       requestBody:
         content:
@@ -7045,7 +7045,7 @@ paths:
           description: The newly created risk
       summary: Create a new risk
       tags:
-        - openapi-v09_risk
+        - v09_risk
   /v0.9/risk/{uuid}:
     delete:
       parameters:
@@ -7061,7 +7061,7 @@ paths:
           description: The risk and its assessments were deleted successfully
       summary: Delete a risk and all of its assessments
       tags:
-        - openapi-v09_risk
+        - v09_risk
     get:
       parameters:
         - description: The resource UUID
@@ -7097,7 +7097,7 @@ paths:
           description: The specified risk and its latest assessment
       summary: Get the specified risk and its latest assessment
       tags:
-        - openapi-v09_risk
+        - v09_risk
     patch:
       parameters:
         - description: The resource UUID
@@ -7121,7 +7121,7 @@ paths:
           description: The updated risk
       summary: Edit a risk
       tags:
-        - openapi-v09_risk
+        - v09_risk
   /v0.9/risk-assessment:
     post:
       requestBody:
@@ -7138,7 +7138,7 @@ paths:
           description: The newly created risk assessment
       summary: Create a new risk assessment and associate it with a risk
       tags:
-        - openapi-v09_risk
+        - v09_risk
   /v0.9/risk-assessment/{uuid}:
     delete:
       parameters:
@@ -7154,7 +7154,7 @@ paths:
           description: The risk assessment was deleted successfully
       summary: Delete a risk assessment
       tags:
-        - openapi-v09_risk
+        - v09_risk
     patch:
       parameters:
         - description: The resource UUID
@@ -7178,7 +7178,7 @@ paths:
           description: The updated risk assessment
       summary: Edit a risk assessment
       tags:
-        - openapi-v09_risk
+        - v09_risk
   /v0.9/case:
     get:
       description: >
@@ -7360,7 +7360,7 @@ paths:
           description: Bad request - invalid filter parameters
       summary: Get filtered list of cases
       tags:
-        - openapi-v09_case
+        - v09_case
   /v0.9/case-data:
     post:
       requestBody:
@@ -7377,7 +7377,7 @@ paths:
           description: The newly created data
       summary: Add new data to a case
       tags:
-        - openapi-v09_case-data
+        - v09_case-data
   /v0.9/case-data/{uuid}:
     get:
       parameters:
@@ -7402,7 +7402,7 @@ paths:
           description: The requested data
       summary: gets a data item
       tags:
-        - openapi-v09_case-data
+        - v09_case-data
   /v0.9/case-report/{uuid}:
     get:
       description: >
@@ -7499,7 +7499,7 @@ paths:
           description: Case not found
       summary: Generate a case report
       tags:
-        - openapi-v09_case-report
+        - v09_case-report
   /v0.9/operations:
     post:
       requestBody:
@@ -7524,7 +7524,7 @@ paths:
           description: The resource has been deleted or updated
       summary: Perform a sequence of operations atomically
       tags:
-        - openapi-v09_operations
+        - v09_operations
   /v0.9/system-property:
     get:
       parameters:
@@ -7557,7 +7557,7 @@ paths:
           description: The list of system properties
       summary: Get all system properties
       tags:
-        - openapi-v09_system-property
+        - v09_system-property
     post:
       requestBody:
         content:
@@ -7573,7 +7573,7 @@ paths:
           description: The newly created system property
       summary: Create a new system property
       tags:
-        - openapi-v09_system-property
+        - v09_system-property
   /v0.9/system-property/{uuid}:
     delete:
       parameters:
@@ -7589,7 +7589,7 @@ paths:
           description: Confirmation of deletion
       summary: Delete an existing system property
       tags:
-        - openapi-v09_system-property
+        - v09_system-property
     get:
       parameters:
         - description: The resource UUID
@@ -7616,7 +7616,7 @@ paths:
           description: The system property
       summary: Get the specified system property
       tags:
-        - openapi-v09_system-property
+        - v09_system-property
     patch:
       parameters:
         - description: The resource UUID
@@ -7640,7 +7640,7 @@ paths:
           description: The updated system property
       summary: Update an existing system property
       tags:
-        - openapi-v09_system-property
+        - v09_system-property
   /v0.9/sla:
     get:
       parameters:
@@ -7665,7 +7665,7 @@ paths:
           description: The list of SLAs
       summary: Get all SLAs
       tags:
-        - openapi-v09_sla
+        - v09_sla
     post:
       requestBody:
         content:
@@ -7681,7 +7681,7 @@ paths:
           description: The newly created SLA
       summary: Create a new SLA
       tags:
-        - openapi-v09_sla
+        - v09_sla
   /v0.9/sla/{uuid}:
     delete:
       parameters:
@@ -7697,7 +7697,7 @@ paths:
           description: The SLA was deleted successfully
       summary: Delete an SLA
       tags:
-        - openapi-v09_sla
+        - v09_sla
     get:
       parameters:
         - description: The resource UUID
@@ -7716,7 +7716,7 @@ paths:
           description: The specified SLA
       summary: Get the specified SLA
       tags:
-        - openapi-v09_sla
+        - v09_sla
     patch:
       parameters:
         - description: The resource UUID
@@ -7740,7 +7740,7 @@ paths:
           description: The updated SLA
       summary: Update an SLA
       tags:
-        - openapi-v09_sla
+        - v09_sla
   /v0.9/case-sla:
     get:
       description: Returns all SLAs that have been applied to the specified case
@@ -7773,7 +7773,7 @@ paths:
           description: The list of SLAs applied to the case
       summary: Get SLAs applied to a case
       tags:
-        - openapi-v09_case-sla
+        - v09_case-sla
   /v0.9/case-sla-warning:
     get:
       description: Returns all SLA warnings that have been triggered for the specified case
@@ -7806,7 +7806,7 @@ paths:
           description: The list of SLA warnings for the case
       summary: Get SLA warnings for a case
       tags:
-        - openapi-v09_case-sla
+        - v09_case-sla
   /v0.9/sla-warning:
     get:
       parameters:
@@ -7838,7 +7838,7 @@ paths:
           description: The list of SLA warnings
       summary: Get all SLA warnings
       tags:
-        - openapi-v09_sla-warning
+        - v09_sla-warning
     post:
       requestBody:
         content:
@@ -7854,7 +7854,7 @@ paths:
           description: The newly created SLA warning
       summary: Create a new SLA warning
       tags:
-        - openapi-v09_sla-warning
+        - v09_sla-warning
   /v0.9/sla-warning/{uuid}:
     delete:
       parameters:
@@ -7870,7 +7870,7 @@ paths:
           description: The SLA warning was deleted successfully
       summary: Delete an SLA warning
       tags:
-        - openapi-v09_sla-warning
+        - v09_sla-warning
     get:
       parameters:
         - description: The resource UUID
@@ -7889,7 +7889,7 @@ paths:
           description: The specified SLA warning
       summary: Get the specified SLA warning
       tags:
-        - openapi-v09_sla-warning
+        - v09_sla-warning
     patch:
       parameters:
         - description: The resource UUID
@@ -7913,7 +7913,7 @@ paths:
           description: The updated SLA warning
       summary: Update an SLA warning
       tags:
-        - openapi-v09_sla-warning
+        - v09_sla-warning
   /v0.9/visualization:
     get:
       description: Returns Vega-Lite formatted data to be visually displayed
@@ -8065,7 +8065,7 @@ paths:
         Gets a specific data set visualization for a chart -- specifically in
         Vega format
       tags:
-        - openapi-v09_visualization
+        - v09_visualization
   /v0.9/visualization-catalog:
     get:
       description: >-
@@ -8082,7 +8082,7 @@ paths:
           description: The list of available visualization chart types
       summary: Returns metadata about all available visualization chart types
       tags:
-        - openapi-v09_visualization-catalog
+        - v09_visualization-catalog
   /v0.9/case-tags/bulk-import:
     post:
       operationId: CaseTagsBulkImport
@@ -8112,7 +8112,7 @@ paths:
           description: Import failed due to collision (fail strategy)
       summary: Bulk import case tags from CSV
       tags:
-        - openapi-v09_bulk-import-export
+        - v09_bulk-import-export
   /v0.9/case-tags/export:
     get:
       operationId: CaseTagsExport
@@ -8125,7 +8125,7 @@ paths:
           description: CSV content containing all case tags
       summary: Export all case tags as CSV
       tags:
-        - openapi-v09_bulk-import-export
+        - v09_bulk-import-export
   /v0.9/case-metas/bulk-import:
     post:
       operationId: CaseMetasBulkImport
@@ -8155,7 +8155,7 @@ paths:
           description: Import failed due to collision (fail strategy)
       summary: Bulk import metadata from CSV
       tags:
-        - openapi-v09_bulk-import-export
+        - v09_bulk-import-export
   /v0.9/case-metas/export:
     get:
       operationId: CaseMetasExport
@@ -8168,7 +8168,7 @@ paths:
           description: CSV content containing all metadata
       summary: Export all metadata as CSV
       tags:
-        - openapi-v09_bulk-import-export
+        - v09_bulk-import-export
 components:
   requestBodies:
     case:
@@ -16951,48 +16951,48 @@ components:
 x-tagGroups:
   - name: Cydarm API
     tags:
-      - cydarm-api-3.0_acl
-      - cydarm-api-3.0_case
-      - cydarm-api-3.0_actuator
-      - cydarm-api-3.0_auth
-      - cydarm-api-3.0_case-cache
-      - cydarm-api-3.0_case-severity
-      - cydarm-api-3.0_case-status
-      - cydarm-api-3.0_case-tag
-      - cydarm-api-3.0_sla
-      - cydarm-api-3.0_data
-      - cydarm-api-3.0_connector
-      - cydarm-api-3.0_connector-type
-      - cydarm-api-3.0_form
-      - cydarm-api-3.0_group
-      - cydarm-api-3.0_meta
-      - cydarm-api-3.0_metrics
-      - cydarm-api-3.0_report
-      - cydarm-api-3.0_notify
-      - cydarm-api-3.0_org
-      - cydarm-api-3.0_org-prop
-      - cydarm-api-3.0_playbook
-      - cydarm-api-3.0_playbook-action
-      - cydarm-api-3.0_resource
-      - cydarm-api-3.0_stix
-      - cydarm-api-3.0_sys-prop
-      - cydarm-api-3.0_third-party
-      - cydarm-api-3.0_user
-      - cydarm-api-3.0_user-prop
-      - openapi-v09_wiki
-      - openapi-v09_risk
-      - openapi-v09_connector-type
-      - openapi-v09_connector-operation-type
-      - openapi-v09_event-trigger
-      - openapi-v09_case
-      - openapi-v09_case-data
-      - openapi-v09_case-report
-      - openapi-v09_operations
-      - openapi-v09_system-property
-      - openapi-v09_sla
-      - openapi-v09_case-sla
-      - openapi-v09_sla-warning
-      - openapi-v09_visualization
-      - openapi-v09_visualization-catalog
-      - openapi-v09_bulk-import-export
-      - openapi-v09_connector
+      - acl
+      - case
+      - actuator
+      - auth
+      - case-cache
+      - case-severity
+      - case-status
+      - case-tag
+      - sla
+      - data
+      - connector
+      - connector-type
+      - form
+      - group
+      - meta
+      - metrics
+      - report
+      - notify
+      - org
+      - org-prop
+      - playbook
+      - playbook-action
+      - resource
+      - stix
+      - sys-prop
+      - third-party
+      - user
+      - user-prop
+      - v09_wiki
+      - v09_risk
+      - v09_connector-type
+      - v09_connector-operation-type
+      - v09_event-trigger
+      - v09_case
+      - v09_case-data
+      - v09_case-report
+      - v09_operations
+      - v09_system-property
+      - v09_sla
+      - v09_case-sla
+      - v09_sla-warning
+      - v09_visualization
+      - v09_visualization-catalog
+      - v09_bulk-import-export
+      - v09_connector
