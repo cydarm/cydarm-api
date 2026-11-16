@@ -8,7 +8,7 @@ info:
   license:
     name: Copyright 2026 Cydarm Technologies Pty Ltd
   title: Cydarm API
-  version: v26.5.1
+  version: v26.12.1
 servers:
   - url: https://localhost/cydarm-api
 tags:
@@ -89,6 +89,12 @@ tags:
   - description: Case data
     name: v09_case-data
     x-displayName: case-data
+  - description: Action instance data
+    name: v09_action-instance-data
+    x-displayName: action-instance-data
+  - description: Wiki page data
+    name: v09_wiki-page-data
+    x-displayName: wiki-page-data
   - description: Case reports
     name: v09_case-report
     x-displayName: case-report
@@ -113,9 +119,21 @@ tags:
   - description: Visualization catalog metadata
     name: v09_visualization-catalog
     x-displayName: visualization-catalog
+  - description: Collection-level ACL permission checks
+    name: v09_acl-permission-check
+    x-displayName: acl-permission-check
   - description: Bulk import and export of tags and metadata
     name: v09_bulk-import-export
     x-displayName: bulk-import-export
+  - description: Liveness and readiness probes
+    name: v09_health
+    x-displayName: health
+  - description: Browser session lifecycle
+    name: v09_session
+    x-displayName: session
+  - description: Single sign-on
+    name: v09_authn
+    x-displayName: authn
   - name: v09_connector
     x-displayName: connector
 paths:
@@ -7371,14 +7389,38 @@ paths:
       responses:
         '201':
           content:
-            application/json:
+            application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/CaseDataTopLevel'
           description: The newly created data
+        '400':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CaseDataTopLevel'
+          description: Invalid request (e.g. inline without a parent, or a nested inline)
       summary: Add new data to a case
       tags:
         - v09_case-data
   /v0.9/case-data/{uuid}:
+    delete:
+      description: >-
+        Deleting a draft hard-deletes it and its inline children in one
+        transaction. Non-draft data retains existing tombstone behaviour.
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+      responses:
+        '204':
+          description: Confirmation of deletion
+      summary: Delete a data item
+      tags:
+        - v09_case-data
     get:
       parameters:
         - description: The resource UUID
@@ -7388,21 +7430,228 @@ paths:
           schema:
             format: UuidPtr
             type: string
+        - description: Which additional objects to include
+          in: query
+          name: include
+          required: false
+          schema:
+            items:
+              type: string
+            type: array
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CaseDataTopLevel'
+          description: The requested data
+      summary: Get a data item
+      tags:
+        - v09_case-data
+  /v0.9/case-data/{uuid}/raw:
+    get:
+      description: Returns the raw stored bytes for inline rendering.
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: The raw data bytes
+      summary: Get the raw bytes of a data item
+      tags:
+        - v09_case-data
+  /v0.9/action-instance-data:
+    post:
       requestBody:
         content:
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/CaseDataRequestTopLevel'
+              $ref: '#/components/schemas/ActionInstanceDataRequestTopLevel'
+      responses:
+        '201':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ActionInstanceDataTopLevel'
+          description: The newly created data
+        '400':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ActionInstanceDataTopLevel'
+          description: Invalid request (e.g. inline without a parent, or a nested inline)
+      summary: Add new data to an action instance
+      tags:
+        - v09_action-instance-data
+  /v0.9/action-instance-data/{uuid}:
+    delete:
+      description: >-
+        Deleting a draft hard-deletes it and its inline children in one
+        transaction. Non-draft data retains existing tombstone behaviour.
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+      responses:
+        '204':
+          description: Confirmation of deletion
+      summary: Delete a data item
+      tags:
+        - v09_action-instance-data
+    get:
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+        - description: Which additional objects to include
+          in: query
+          name: include
+          required: false
+          schema:
+            items:
+              type: string
+            type: array
       responses:
         '200':
           content:
-            application/json:
+            application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/CaseDataTopLevel'
+                $ref: '#/components/schemas/ActionInstanceDataTopLevel'
           description: The requested data
-      summary: gets a data item
+      summary: Get a data item
       tags:
-        - v09_case-data
+        - v09_action-instance-data
+  /v0.9/action-instance-data/{uuid}/raw:
+    get:
+      description: Returns the raw stored bytes for inline rendering.
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: The raw data bytes
+      summary: Get the raw bytes of a data item
+      tags:
+        - v09_action-instance-data
+  /v0.9/wiki-page-data:
+    post:
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/WikiPageDataRequestTopLevel'
+      responses:
+        '201':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/WikiPageDataTopLevel'
+          description: The newly created data
+        '400':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/WikiPageDataTopLevel'
+          description: Invalid request (e.g. inline without a parent, or a nested inline)
+      summary: Add new data to a wiki page
+      tags:
+        - v09_wiki-page-data
+  /v0.9/wiki-page-data/{uuid}:
+    delete:
+      description: >-
+        Deleting a draft hard-deletes it and its inline children in one
+        transaction. Non-draft data retains existing tombstone behaviour.
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+      responses:
+        '204':
+          description: Confirmation of deletion
+      summary: Delete a data item
+      tags:
+        - v09_wiki-page-data
+    get:
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+        - description: Which additional objects to include
+          in: query
+          name: include
+          required: false
+          schema:
+            items:
+              type: string
+            type: array
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/WikiPageDataTopLevel'
+          description: The requested data
+      summary: Get a data item
+      tags:
+        - v09_wiki-page-data
+  /v0.9/wiki-page-data/{uuid}/raw:
+    get:
+      description: Returns the raw stored bytes for inline rendering.
+      parameters:
+        - description: The resource UUID
+          in: path
+          name: uuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: The raw data bytes
+      summary: Get the raw bytes of a data item
+      tags:
+        - v09_wiki-page-data
   /v0.9/case-report/{uuid}:
     get:
       description: >
@@ -7929,6 +8178,7 @@ paths:
               - heatmap
               - line
               - table
+              - metric
             type: string
         - description: The data source for the visualization
           in: query
@@ -7938,6 +8188,7 @@ paths:
             enum:
               - case-data
               - sla-data
+              - case-transition-data
             type: string
         - description: Earliest creation timestamp in ISO 8601 format
           in: query
@@ -7987,6 +8238,71 @@ paths:
           required: false
           schema:
             type: string
+        - description: >-
+            Earliest closure timestamp (ISO 8601). For chartType=metric, counts
+            closures within the filtered case set (scoped by filter[create_*]
+            and other case filters).
+          in: query
+          name: filter[close_start]
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Latest closure timestamp (ISO 8601, inclusive). For
+            chartType=metric, counts closures within the filtered case set
+            (scoped by filter[create_*] and other case filters).
+          in: query
+          name: filter[close_end]
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Earliest open timestamp (ISO 8601). For chartType=metric, counts
+            opens within the filtered case set (scoped by filter[create_*] and
+            other case filters).
+          in: query
+          name: filter[open_start]
+          required: false
+          schema:
+            type: string
+        - description: Latest open timestamp (ISO 8601). Inclusive upper bound.
+          in: query
+          name: filter[open_end]
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Target state name for case-transition-data metrics (required for
+            that dataType). E.g. "Containment", "Closed".
+          in: query
+          name: filter[end_state]
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Optional start state for case-transition-data. Omitted means measure
+            from case creation.
+          in: query
+          name: filter[start_state]
+          required: false
+          schema:
+            type: string
+        - description: >-
+            For case-transition-data — include time spent in the start state
+            (maps to the legacy includeFrom flag).
+          in: query
+          name: filter[include_start_state]
+          required: false
+          schema:
+            type: boolean
+        - description: >-
+            For case-transition-data — include time spent in the end state (maps
+            to the legacy includeTo flag).
+          in: query
+          name: filter[include_end_state]
+          required: false
+          schema:
+            type: boolean
         - description: >-
             Number of items per page. Used by table (default 20) and bar with
             group_by_x=tag (default 10).
@@ -8054,6 +8370,26 @@ paths:
           schema:
             default: UTC
             type: string
+        - description: >-
+            Y-axis display unit for duration line charts (case-transition-data).
+            When omitted or set to "auto" (the catalog-advertised default), the
+            backend auto-selects a readable unit from the data magnitude.
+            Ignored for non-duration aggregates (e.g. count). Returns 400 for an
+            unrecognised unit.
+          in: query
+          name: transform[display_unit]
+          required: false
+          schema:
+            enum:
+              - auto
+              - seconds
+              - minutes
+              - hours
+              - days
+              - weeks
+              - months
+              - years
+            type: string
       responses:
         '200':
           content:
@@ -8083,6 +8419,40 @@ paths:
       summary: Returns metadata about all available visualization chart types
       tags:
         - v09_visualization-catalog
+  /v0.9/acl-permission-checks:
+    get:
+      description: >
+        Evaluates the caller's session against each requested ACL and returns
+        the manage/create/read/update/delete/find
+
+        permissions the caller would have over an object protected by that ACL.
+
+        ACLs that don't exist or that the caller cannot both FIND and READ are
+        omitted. Results are not in request order;
+
+        key on each resource's id.
+      operationId: AclPermissionChecksGet
+      parameters:
+        - description: Comma-delimited list of ACL UUIDs to check
+          in: query
+          name: filter[acl]
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/AclPermissionCheckListTopLevel'
+          description: >-
+            The caller's permissions for each visible (FIND and READ) requested
+            ACL
+      summary: >-
+        Returns the permissions the current user would have over objects
+        protected by each requested ACL
+      tags:
+        - v09_acl-permission-check
   /v0.9/case-tags/bulk-import:
     post:
       operationId: CaseTagsBulkImport
@@ -8169,6 +8539,136 @@ paths:
       summary: Export all metadata as CSV
       tags:
         - v09_bulk-import-export
+  /v0.9/livez:
+    get:
+      description: >-
+        Returns 200 whenever the process is up and serving HTTP. Performs no
+        dependency checks, so an unhealthy database or vault cannot drive a
+        restart loop. Unauthenticated and side-effect free.
+      operationId: Livez
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+          description: The process is serving
+      summary: Liveness probe
+      tags:
+        - v09_health
+  /v0.9/readyz:
+    get:
+      description: >-
+        Returns 200 when the service can do useful work, meaning the database is
+        reachable and the vault is usable, and 503 otherwise. Unauthenticated
+        and side-effect free.
+      operationId: Readyz
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+          description: The service is ready to serve requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+          description: A dependency is unavailable, so the service is not ready
+      summary: Readiness probe
+      tags:
+        - v09_health
+  /v0.9/session:
+    delete:
+      responses:
+        '204':
+          description: The session was ended
+      summary: End the current session
+      tags:
+        - v09_session
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+          description: The current session
+      summary: Get the current session
+      tags:
+        - v09_session
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionIdentifierRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionMethods'
+          description: The permitted authentication methods
+      summary: Begin authentication for an identifier
+      tags:
+        - v09_session
+  /v0.9/session/password:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionCredentialRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+          description: The established session
+      summary: Complete authentication with a password
+      tags:
+        - v09_session
+  /v0.9/session/refresh:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+          description: The extended session
+      summary: Extend the current session
+      tags:
+        - v09_session
+  /v0.9/authn/sso/{authSourceUuid}/redirect:
+    get:
+      description: >-
+        Top-level browser navigation. Signs the SSO state into the pre-auth
+        cookie (no server-side state) and redirects to the identity provider.
+      parameters:
+        - in: path
+          name: authSourceUuid
+          required: true
+          schema:
+            format: UuidPtr
+            type: string
+        - description: >-
+            Local path to return to after sign-in. Anything other than a local
+            absolute path is replaced with /launch.
+          in: query
+          name: returnTo
+          required: false
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to the identity provider
+      summary: Start single sign-on with an identity provider
+      tags:
+        - v09_authn
 components:
   requestBodies:
     case:
@@ -8374,6 +8874,18 @@ components:
           description: Is this data item an audit message
           type: boolean
           x-go-name: Audit
+        contenthash:
+          description: >-
+            A cryptographic hash of the artefact's decoded content, computed on
+            ingest.
+
+            Empty for artefacts created before content hashing was introduced.
+          type: string
+          x-go-name: ContentHash
+        contenthashalg:
+          description: The algorithm used for ContentHash
+          type: string
+          x-go-name: ContentHashAlg
         created:
           description: The time the item was created, as an RFC3339 timestamp
           maxLength: 25
@@ -8414,6 +8926,12 @@ components:
           description: Has this data item been deleted
           type: boolean
           x-go-name: Deleted
+        draft:
+          description: >-
+            Is this data item an unpublished draft (image-only; adopted by a
+            comment on submit)
+          type: boolean
+          x-go-name: Draft
         edited:
           description: Has this data been edited
           type: boolean
@@ -8437,6 +8955,12 @@ components:
           description: Is this data item hidden
           type: boolean
           x-go-name: Hidden
+        inline:
+          description: >-
+            Is this data item embedded inline in its parent's markdown body
+            (e.g. an inline image)
+          type: boolean
+          x-go-name: Inline
         lastmodified:
           description: The time the item was created, as an RFC3339 timestamp
           maxLength: 25
@@ -9074,6 +9598,18 @@ components:
           minLength: 36
           type: string
           x-go-name: CaseUuid
+        contenthash:
+          description: >-
+            A cryptographic hash of the artefact's decoded content, computed on
+            ingest.
+
+            Empty for artefacts created before content hashing was introduced.
+          type: string
+          x-go-name: ContentHash
+        contenthashalg:
+          description: The algorithm used for ContentHash
+          type: string
+          x-go-name: ContentHashAlg
         created:
           description: The time the item was created, as an RFC3339 timestamp
           maxLength: 25
@@ -9114,6 +9650,12 @@ components:
           description: Has this data item been deleted
           type: boolean
           x-go-name: Deleted
+        draft:
+          description: >-
+            Is this data item an unpublished draft (image-only; adopted by a
+            comment on submit)
+          type: boolean
+          x-go-name: Draft
         edited:
           description: Has this data been edited
           type: boolean
@@ -9137,6 +9679,12 @@ components:
           description: Is this data item hidden
           type: boolean
           x-go-name: Hidden
+        inline:
+          description: >-
+            Is this data item embedded inline in its parent's markdown body
+            (e.g. an inline image)
+          type: boolean
+          x-go-name: Inline
         lastmodified:
           description: The time the item was created, as an RFC3339 timestamp
           maxLength: 25
@@ -9986,6 +10534,8 @@ components:
           minLength: 1
           type: string
           x-go-name: Assignee
+        assigneeUser:
+          $ref: '#/components/schemas/user'
         closed:
           description: The time at which the case was closed
           type: string
@@ -10181,6 +10731,12 @@ components:
           description: Where the data came from
           type: string
           x-go-name: DataSource
+        draft:
+          description: >-
+            Is this an unpublished draft image (set at upload; adopted by a
+            comment on submit)
+          type: boolean
+          x-go-name: Draft
         encryptionkey:
           description: The identifier of the encryption key to use on this data (if any)
           type: string
@@ -10200,6 +10756,12 @@ components:
           description: Is this data item hidden
           type: boolean
           x-go-name: Hidden
+        inline:
+          description: >-
+            Is this data item embedded inline in its parent's markdown body
+            (e.g. an inline image)
+          type: boolean
+          x-go-name: Inline
         mimeType:
           description: The MIME type of the data
           type: string
@@ -10305,6 +10867,12 @@ components:
           description: Where the data came from
           type: string
           x-go-name: DataSource
+        draft:
+          description: >-
+            Is this an unpublished draft image (set at upload; adopted by a
+            comment on submit)
+          type: boolean
+          x-go-name: Draft
         encryptionkey:
           description: The identifier of the encryption key to use on this data (if any)
           type: string
@@ -10324,6 +10892,12 @@ components:
           description: Is this data item hidden
           type: boolean
           x-go-name: Hidden
+        inline:
+          description: >-
+            Is this data item embedded inline in its parent's markdown body
+            (e.g. an inline image)
+          type: boolean
+          x-go-name: Inline
         mimeType:
           description: The MIME type of the data
           type: string
@@ -11411,6 +11985,12 @@ components:
           description: The raw bytes comprising the data, encoded in base64
           type: string
           x-go-name: ByteData
+        contenthash:
+          description: >-
+            A cryptographic hash of the artefact's decoded content, computed on
+            ingest
+          type: string
+          x-go-name: ContentHash
         created:
           description: The time the item was created, as an ISO8601 timestamp
           maxLength: 25
@@ -11551,6 +12131,18 @@ components:
           minLength: 36
           type: string
           x-go-name: CaseUuid
+        contenthash:
+          description: >-
+            A cryptographic hash of the artefact's decoded content, computed on
+            ingest.
+
+            Empty for artefacts created before content hashing was introduced.
+          type: string
+          x-go-name: ContentHash
+        contenthashalg:
+          description: The algorithm used for ContentHash
+          type: string
+          x-go-name: ContentHashAlg
         created:
           description: The time the item was created, as an RFC3339 timestamp
           maxLength: 25
@@ -11591,6 +12183,12 @@ components:
           description: Has this data item been deleted
           type: boolean
           x-go-name: Deleted
+        draft:
+          description: >-
+            Is this data item an unpublished draft (image-only; adopted by a
+            comment on submit)
+          type: boolean
+          x-go-name: Draft
         edited:
           description: Has this data been edited
           type: boolean
@@ -11614,6 +12212,12 @@ components:
           description: Is this data item hidden
           type: boolean
           x-go-name: Hidden
+        inline:
+          description: >-
+            Is this data item embedded inline in its parent's markdown body
+            (e.g. an inline image)
+          type: boolean
+          x-go-name: Inline
         lastmodified:
           description: The time the item was created, as an RFC3339 timestamp
           maxLength: 25
@@ -13655,18 +14259,6 @@ components:
     JsonApiType:
       type: string
     JsonApiToOneRelationship:
-      example:
-        data:
-          lid: lid
-          id: id
-          type: type
-        meta: '{}'
-        links:
-          next: next
-          last: last
-          prev: prev
-          self: self
-          first: first
       nullable: true
       properties:
         links:
@@ -13691,10 +14283,6 @@ components:
           type: object
       type: object
     JsonApiResourceId:
-      example:
-        lid: lid
-        id: id
-        type: type
       nullable: true
       properties:
         type:
@@ -13709,12 +14297,6 @@ components:
           type: string
       type: object
     JsonApiLinks:
-      example:
-        next: next
-        last: last
-        prev: prev
-        self: self
-        first: first
       nullable: true
       properties:
         self:
@@ -13762,8 +14344,6 @@ components:
           type: object
       type: object
     JsonApiServerImpl:
-      example:
-        version: version
       nullable: true
       properties:
         version:
@@ -13772,15 +14352,6 @@ components:
       type: object
     ObjectMetadataSet:
       description: Additional metadata fields
-      example:
-        editable: true
-        creator_uuid: creator_uuid
-        last_modifier_uuid: last_modifier_uuid
-        deletable: true
-        updatable: true
-        last_modified_date: last_modified_date
-        created_date: created_date
-        manageable: true
       nullable: true
       properties:
         deletable:
@@ -13832,6 +14403,19 @@ components:
           type: string
         source:
           type: string
+      type: object
+    HealthStatus:
+      example:
+        status: ok
+      properties:
+        status:
+          description: '`ok` when the check passes, `unavailable` when it does not.'
+          enum:
+            - ok
+            - unavailable
+          type: string
+      required:
+        - status
       type: object
     AtomicOperation:
       properties:
@@ -14187,8 +14771,7 @@ components:
         type:
           type: string
         attributes:
-          $ref: >-
-            #/components/schemas/ConnectorOperationTypeRequestResource_attributes
+          $ref: '#/components/schemas/ConnectorOperationTypeRequestResource_attributes'
         relationships:
           $ref: '#/components/schemas/ConnectorOperationTypeResource_relationships'
       type: object
@@ -14198,8 +14781,7 @@ components:
         type:
           type: string
         attributes:
-          $ref: >-
-            #/components/schemas/ConnectorOperationTypeUpdateRequestResource_attributes
+          $ref: '#/components/schemas/ConnectorOperationTypeUpdateRequestResource_attributes'
         relationships:
           $ref: '#/components/schemas/ConnectorOperationTypeResource_relationships'
       type: object
@@ -14350,8 +14932,7 @@ components:
         attributes:
           $ref: '#/components/schemas/ConnectorTypeUpdateRequestResource_attributes'
         relationships:
-          $ref: >-
-            #/components/schemas/ConnectorTypeUpdateRequestResource_relationships
+          $ref: '#/components/schemas/ConnectorTypeUpdateRequestResource_relationships'
         meta:
           $ref: '#/components/schemas/ObjectMetadataSet'
       type: object
@@ -14515,9 +15096,9 @@ components:
         type:
           type: string
         attributes:
-          $ref: '#/components/schemas/CaseDataRequestResource_attributes'
+          $ref: '#/components/schemas/CaseDataRequestResourceAttributes'
         relationships:
-          $ref: '#/components/schemas/CaseDataRequestResource_relationships'
+          $ref: '#/components/schemas/CaseDataRequestResourceRelationships'
       type: object
     CaseDataRequestTopLevel:
       properties:
@@ -14525,113 +15106,6 @@ components:
           $ref: '#/components/schemas/CaseDataRequestResource'
       type: object
     CaseDataTopLevel:
-      example:
-        jsonapi:
-          version: version
-        data:
-          relationships:
-            editor:
-              data:
-                lid: lid
-                id: id
-                type: type
-              meta: '{}'
-              links:
-                next: next
-                last: last
-                prev: prev
-                self: self
-                first: first
-            creator:
-              data:
-                lid: lid
-                id: id
-                type: type
-              meta: '{}'
-              links:
-                next: next
-                last: last
-                prev: prev
-                self: self
-                first: first
-            parent_data:
-              data:
-                lid: lid
-                id: id
-                type: type
-              meta: '{}'
-              links:
-                next: next
-                last: last
-                prev: prev
-                self: self
-                first: first
-            acl:
-              data:
-                lid: lid
-                id: id
-                type: type
-              meta: '{}'
-              links:
-                next: next
-                last: last
-                prev: prev
-                self: self
-                first: first
-            parent_case:
-              data:
-                lid: lid
-                id: id
-                type: type
-              meta: '{}'
-              links:
-                next: next
-                last: last
-                prev: prev
-                self: self
-                first: first
-          meta:
-            editable: true
-            creator_uuid: creator_uuid
-            last_modifier_uuid: last_modifier_uuid
-            deletable: true
-            updatable: true
-            last_modified_date: last_modified_date
-            created_date: created_date
-            manageable: true
-          attributes:
-            data_size: 6
-            data_location_type: data_location_type
-            sig_precedence: sig_precedence
-            hidden: true
-            edited: true
-            created: created
-            creator_username: creator_username
-            file_name: file_name
-            version: 0
-            data_location: data_location
-            data_source: data_source
-            significance: significance
-            deleted: true
-            editor_username: editor_username
-            mime_type: mime_type
-            audit: true
-            location: location
-            last_modified: last_modified
-          id: id
-          type: type
-        links:
-          next: next
-          last: last
-          prev: prev
-          self: self
-          first: first
-        included:
-          - '{}'
-          - '{}'
-        errors:
-          - null
-          - null
       properties:
         links:
           $ref: '#/components/schemas/JsonApiLinks'
@@ -14651,98 +15125,6 @@ components:
           $ref: '#/components/schemas/CaseDataResource'
       type: object
     CaseDataResource:
-      example:
-        relationships:
-          editor:
-            data:
-              lid: lid
-              id: id
-              type: type
-            meta: '{}'
-            links:
-              next: next
-              last: last
-              prev: prev
-              self: self
-              first: first
-          creator:
-            data:
-              lid: lid
-              id: id
-              type: type
-            meta: '{}'
-            links:
-              next: next
-              last: last
-              prev: prev
-              self: self
-              first: first
-          parent_data:
-            data:
-              lid: lid
-              id: id
-              type: type
-            meta: '{}'
-            links:
-              next: next
-              last: last
-              prev: prev
-              self: self
-              first: first
-          acl:
-            data:
-              lid: lid
-              id: id
-              type: type
-            meta: '{}'
-            links:
-              next: next
-              last: last
-              prev: prev
-              self: self
-              first: first
-          parent_case:
-            data:
-              lid: lid
-              id: id
-              type: type
-            meta: '{}'
-            links:
-              next: next
-              last: last
-              prev: prev
-              self: self
-              first: first
-        meta:
-          editable: true
-          creator_uuid: creator_uuid
-          last_modifier_uuid: last_modifier_uuid
-          deletable: true
-          updatable: true
-          last_modified_date: last_modified_date
-          created_date: created_date
-          manageable: true
-        attributes:
-          data_size: 6
-          data_location_type: data_location_type
-          sig_precedence: sig_precedence
-          hidden: true
-          edited: true
-          created: created
-          creator_username: creator_username
-          file_name: file_name
-          version: 0
-          data_location: data_location
-          data_source: data_source
-          significance: significance
-          deleted: true
-          editor_username: editor_username
-          mime_type: mime_type
-          audit: true
-          location: location
-          last_modified: last_modified
-        id: id
-        type: type
       properties:
         type:
           type: string
@@ -14751,11 +15133,109 @@ components:
           format: UuidPtr
           type: string
         attributes:
-          $ref: '#/components/schemas/CaseDataResource_attributes'
+          $ref: '#/components/schemas/CaseDataResourceAttributes'
         relationships:
-          $ref: '#/components/schemas/CaseDataResource_relationships'
+          $ref: '#/components/schemas/CaseDataResourceRelationships'
         meta:
           $ref: '#/components/schemas/ObjectMetadataSet'
+      type: object
+    ActionInstanceDataRequestResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ActionInstanceDataRequestResourceAttributes'
+        relationships:
+          $ref: '#/components/schemas/ActionInstanceDataRequestResourceRelationships'
+      type: object
+    ActionInstanceDataRequestTopLevel:
+      properties:
+        data:
+          $ref: '#/components/schemas/ActionInstanceDataRequestResource'
+      type: object
+    ActionInstanceDataResource:
+      properties:
+        type:
+          type: string
+        id:
+          description: The UUID of the data stub
+          format: UuidPtr
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ActionInstanceDataResourceAttributes'
+        relationships:
+          $ref: '#/components/schemas/ActionInstanceDataResourceRelationships'
+        meta:
+          $ref: '#/components/schemas/ObjectMetadataSet'
+      type: object
+    ActionInstanceDataTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/ActionInstanceDataResource'
+      type: object
+    WikiPageDataRequestResource:
+      nullable: true
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/WikiPageDataRequestResourceAttributes'
+        relationships:
+          $ref: '#/components/schemas/WikiPageDataRequestResourceRelationships'
+      type: object
+    WikiPageDataRequestTopLevel:
+      properties:
+        data:
+          $ref: '#/components/schemas/WikiPageDataRequestResource'
+      type: object
+    WikiPageDataResource:
+      properties:
+        type:
+          type: string
+        id:
+          description: The UUID of the data stub
+          format: UuidPtr
+          type: string
+        attributes:
+          $ref: '#/components/schemas/WikiPageDataResourceAttributes'
+        relationships:
+          $ref: '#/components/schemas/WikiPageDataResourceRelationships'
+        meta:
+          $ref: '#/components/schemas/ObjectMetadataSet'
+      type: object
+    WikiPageDataTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          $ref: '#/components/schemas/WikiPageDataResource'
       type: object
     CaseReportResource:
       properties:
@@ -15298,6 +15778,41 @@ components:
             $ref: '#/components/schemas/VisualizationCatalogResource'
           type: array
       type: object
+    AclPermissionCheckResource:
+      properties:
+        type:
+          type: string
+        id:
+          description: The UUID of the ACL these permissions were computed for
+          format: UuidPtr
+          type: string
+        attributes:
+          $ref: '#/components/schemas/AclPermissionCheckResource_attributes'
+      type: object
+    AclPermissionCheckListTopLevel:
+      properties:
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiServerImpl'
+        included:
+          description: A list of objects related to this resource
+          items:
+            type: object
+          type: array
+        errors:
+          description: A list of error objects
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+          type: array
+        data:
+          description: >-
+            The caller's permissions for each visible (FIND and READ) requested
+            ACL
+          items:
+            $ref: '#/components/schemas/AclPermissionCheckResource'
+          type: array
+      type: object
     BulkImportRequestResource:
       nullable: true
       properties:
@@ -15346,8 +15861,175 @@ components:
         data:
           $ref: '#/components/schemas/BulkExportResource'
       type: object
-    JsonApiError_1:
-      $ref: '#/components/schemas/JsonApiError'
+    SessionIdentifierRequest:
+      example:
+        username: username
+      properties:
+        username:
+          description: The identifier the user is signing in with
+          type: string
+      required:
+        - username
+      type: object
+    SessionMethods:
+      example:
+        redirectUrl: redirectUrl
+        methods:
+          - methods
+          - methods
+        preferred: preferred
+      properties:
+        methods:
+          description: >-
+            The account's method, "password" or "sso", plus "totp" when a code
+            must accompany the password.
+          items:
+            type: string
+          type: array
+        preferred:
+          deprecated: true
+          description: Deprecated; the account's method. Read methods instead.
+          type: string
+        redirectUrl:
+          description: >-
+            SSO start URL for the account's auth source, when sso is offered and
+            v0.9 SSO is active.
+          type: string
+      required:
+        - methods
+      type: object
+    SessionCredentialRequest:
+      example:
+        totp: totp
+        password: password
+      properties:
+        password:
+          description: The user's password
+          type: string
+        totp:
+          description: TOTP code, when the account has one enrolled
+          nullable: true
+          type: string
+      required:
+        - password
+      type: object
+    Session:
+      example:
+        maxTtlAt: '2000-01-23T04:56:07.000+00:00'
+        sessionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        authnMethod: authnMethod
+        user:
+          authSourceId: authSourceId
+          phone: phone
+          org: org
+          created: '2000-01-23T04:56:07.000+00:00'
+          givenName: givenName
+          familyName: familyName
+          authSourceHandle: authSourceHandle
+          uuid: uuid
+          human: true
+          groupUuids:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+          username: username
+        expiresAt: '2000-01-23T04:56:07.000+00:00'
+        username: username
+      properties:
+        sessionUuid:
+          format: uuid
+          type: string
+        username:
+          type: string
+        authnMethod:
+          description: The method that established this session
+          type: string
+        expiresAt:
+          description: >-
+            When the session expires through inactivity. The client cannot read
+            the HttpOnly cookie, so this is the only source for its refresh
+            clock.
+          format: date-time
+          type: string
+        maxTtlAt:
+          description: Absolute expiry. Never extended by refresh.
+          format: date-time
+          type: string
+        user:
+          $ref: '#/components/schemas/SessionUser'
+      type: object
+    SessionUser:
+      description: >-
+        The account that owns the session, so the SPA needs no second request to
+        identify its user. Close to the legacy GET /auth/session/{id} shape,
+        minus aclUuid: that field is the ACL protecting the user *record* (who
+        may view or edit this user), not the user's own permissions, and its
+        only consumer was passing it as the ACL for newly created case watches -
+        an unrelated object borrowing the user record's lock. The server
+        defaults that to "case data defaults" when the client omits it, which is
+        what it should always have been.
+      example:
+        authSourceId: authSourceId
+        phone: phone
+        org: org
+        created: '2000-01-23T04:56:07.000+00:00'
+        givenName: givenName
+        familyName: familyName
+        authSourceHandle: authSourceHandle
+        uuid: uuid
+        human: true
+        groupUuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: email
+        username: username
+      properties:
+        uuid:
+          format: UuidPtr
+          type: string
+        username:
+          type: string
+        human:
+          type: boolean
+        email:
+          type: string
+        phone:
+          type: string
+        givenName:
+          type: string
+        familyName:
+          type: string
+        created:
+          format: date-time
+          type: string
+        authSourceId:
+          type: string
+        authSourceHandle:
+          type: string
+        groupUuids:
+          description: >-
+            The groups this user belongs to. A DISPLAY HINT, never an
+            authorization decision: groups are the subject side of the ACL
+            model, so the SPA can use them to predict what the server will allow
+            and render accordingly (show a button, filter a pick-list), but the
+            server re-derives membership from the session on every request and
+            never reads this value back. A client that tampers with it only
+            changes what its own browser draws. Recomputed per request, so a
+            group change takes effect on the next call rather than at session
+            expiry. Always present, empty when the user belongs to no groups, as
+            the legacy body is; the SPA indexes it without a guard.
+          items:
+            format: uuid
+            type: string
+          type: array
+        org:
+          format: UuidPtr
+          type: string
+      required:
+        - groupUuids
+        - username
+        - uuid
+      type: object
     SlaWarningRequestResource:
       nullable: true
       properties:
@@ -15905,7 +16587,7 @@ components:
           description: Total number of cases matching the filters
           type: integer
       type: object
-    CaseDataRequestResource_attributes:
+    CaseDataRequestResourceAttributes:
       properties:
         mime_type:
           description: The MIME type of the data
@@ -15929,8 +16611,20 @@ components:
         hidden:
           description: Is this data item hidden
           type: boolean
+        draft:
+          description: >-
+            Upload as an unpublished draft image, adopted by a comment via
+            inline_data on submit. Defaults to false.
+          type: boolean
+        occurred:
+          description: >-
+            When the described activity occurred (RFC3339). Defaults to the
+            creation time.
+          format: date-time
+          type: string
+      title: CaseDataRequestResourceAttributes
       type: object
-    CaseDataRequestResource_relationships:
+    CaseDataRequestResourceRelationships:
       nullable: true
       properties:
         acl:
@@ -15939,36 +16633,17 @@ components:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
         parent_case:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
+        inline_data:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
+      title: CaseDataRequestResourceRelationships
       type: object
-    CaseDataResource_attributes:
-      example:
-        data_size: 6
-        data_location_type: data_location_type
-        sig_precedence: sig_precedence
-        hidden: true
-        edited: true
-        created: created
-        creator_username: creator_username
-        file_name: file_name
-        version: 0
-        data_location: data_location
-        data_source: data_source
-        significance: significance
-        deleted: true
-        editor_username: editor_username
-        mime_type: mime_type
-        audit: true
-        location: location
-        last_modified: last_modified
+    CaseDataResourceAttributes:
       properties:
         version:
           description: The version of the data item
           type: integer
         created:
           description: The time the item was created, as an ISO8601 timestamp
-          type: string
-        creator_username:
-          description: The name of the creator user
           type: string
         mime_type:
           description: The Mime type of the data
@@ -15979,6 +16654,19 @@ components:
         data_size:
           description: The size of the data, in bytes
           type: integer
+        content_hash:
+          description: >-
+            A cryptographic hash of the artefact's decoded content, computed by
+            the server when the item was stored. Reproducible by the recipient
+            of an exported artefact using a standard tool. Empty for artefacts
+            created before content hashing was introduced. Server-computed and
+            read-only.
+          readOnly: true
+          type: string
+        content_hash_alg:
+          description: The algorithm used for content_hash, for example SHA-256
+          readOnly: true
+          type: string
         data_source:
           description: Where the data came from
           type: string
@@ -16008,78 +16696,23 @@ components:
         edited:
           description: Has this data been edited
           type: boolean
-        editor_username:
-          description: The name of the editor user
-          type: string
         last_modified:
           description: The time the item was last modified, as an ISO8601 timestamp
           type: string
         hidden:
           description: Is this data item hidden
           type: boolean
+        inline:
+          description: >-
+            Whether this item is embedded in its parent's body rather than shown
+            as a reply row.
+          type: boolean
+        draft:
+          description: Whether this item is an unpublished draft.
+          type: boolean
+      title: CaseDataResourceAttributes
       type: object
-    CaseDataResource_relationships:
-      example:
-        editor:
-          data:
-            lid: lid
-            id: id
-            type: type
-          meta: '{}'
-          links:
-            next: next
-            last: last
-            prev: prev
-            self: self
-            first: first
-        creator:
-          data:
-            lid: lid
-            id: id
-            type: type
-          meta: '{}'
-          links:
-            next: next
-            last: last
-            prev: prev
-            self: self
-            first: first
-        parent_data:
-          data:
-            lid: lid
-            id: id
-            type: type
-          meta: '{}'
-          links:
-            next: next
-            last: last
-            prev: prev
-            self: self
-            first: first
-        acl:
-          data:
-            lid: lid
-            id: id
-            type: type
-          meta: '{}'
-          links:
-            next: next
-            last: last
-            prev: prev
-            self: self
-            first: first
-        parent_case:
-          data:
-            lid: lid
-            id: id
-            type: type
-          meta: '{}'
-          links:
-            next: next
-            last: last
-            prev: prev
-            self: self
-            first: first
+    CaseDataResourceRelationships:
       nullable: true
       properties:
         acl:
@@ -16088,10 +16721,259 @@ components:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
         parent_case:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
+        inline_data:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
         creator:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
         editor:
           $ref: '#/components/schemas/JsonApiToOneRelationship'
+      title: CaseDataResourceRelationships
+      type: object
+    ActionInstanceDataRequestResourceAttributes:
+      properties:
+        mime_type:
+          description: The MIME type of the data
+          type: string
+        payload:
+          description: The base-64 encoded data payload
+          format: Byte
+          type: string
+        significance:
+          description: The significance of the data
+          type: string
+        file_name:
+          description: The name of the file being uploaded
+          type: string
+        data_source:
+          description: Where the data came from
+          type: string
+        encryption_key:
+          description: The identifier of an encryption key to use on this data
+          type: string
+        hidden:
+          description: Is this data item hidden
+          type: boolean
+        draft:
+          description: >-
+            Upload as an unpublished draft image, adopted by a comment via
+            inline_data on submit. Defaults to false.
+          type: boolean
+      title: ActionInstanceDataRequestResourceAttributes
+      type: object
+    ActionInstanceDataRequestResourceRelationships:
+      nullable: true
+      properties:
+        acl:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        parent_data:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        parent_action_instance:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        inline_data:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
+      title: ActionInstanceDataRequestResourceRelationships
+      type: object
+    ActionInstanceDataResourceAttributes:
+      properties:
+        version:
+          description: The version of the data item
+          type: integer
+        created:
+          description: The time the item was created, as an ISO8601 timestamp
+          type: string
+        mime_type:
+          description: The Mime type of the data
+          type: string
+        file_name:
+          description: The file name of the data, if it is a file
+          type: string
+        data_size:
+          description: The size of the data, in bytes
+          type: integer
+        data_source:
+          description: Where the data came from
+          type: string
+        location:
+          description: How the data is identified in the location where the data came from
+          type: string
+        data_location:
+          description: >-
+            The identifier used to identify the data where the data is stored
+            now
+          type: string
+        data_location_type:
+          description: Where the data is stored now
+          type: string
+        significance:
+          description: The significance level of the data item
+          type: string
+        sig_precedence:
+          description: The precedence of the significance of the data item
+          type: string
+        audit:
+          description: Is this data item an audit message
+          type: boolean
+        deleted:
+          description: Has this data item been deleted
+          type: boolean
+        edited:
+          description: Has this data been edited
+          type: boolean
+        last_modified:
+          description: The time the item was last modified, as an ISO8601 timestamp
+          type: string
+        hidden:
+          description: Is this data item hidden
+          type: boolean
+        inline:
+          description: >-
+            Whether this item is embedded in its parent's body rather than shown
+            as a reply row.
+          type: boolean
+        draft:
+          description: Whether this item is an unpublished draft.
+          type: boolean
+      title: ActionInstanceDataResourceAttributes
+      type: object
+    ActionInstanceDataResourceRelationships:
+      nullable: true
+      properties:
+        acl:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        parent_data:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        parent_action_instance:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        inline_data:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
+        creator:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        editor:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+      title: ActionInstanceDataResourceRelationships
+      type: object
+    WikiPageDataRequestResourceAttributes:
+      properties:
+        mime_type:
+          description: The MIME type of the data
+          type: string
+        payload:
+          description: The base-64 encoded data payload
+          format: Byte
+          type: string
+        significance:
+          description: The significance of the data
+          type: string
+        file_name:
+          description: The name of the file being uploaded
+          type: string
+        data_source:
+          description: Where the data came from
+          type: string
+        encryption_key:
+          description: The identifier of an encryption key to use on this data
+          type: string
+        hidden:
+          description: Is this data item hidden
+          type: boolean
+        draft:
+          description: >-
+            Upload as an unpublished draft image, adopted by a comment via
+            inline_data on submit. Defaults to false.
+          type: boolean
+      title: WikiPageDataRequestResourceAttributes
+      type: object
+    WikiPageDataRequestResourceRelationships:
+      nullable: true
+      properties:
+        acl:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        parent_data:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        parent_wiki_page:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        inline_data:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
+      title: WikiPageDataRequestResourceRelationships
+      type: object
+    WikiPageDataResourceAttributes:
+      properties:
+        version:
+          description: The version of the data item
+          type: integer
+        created:
+          description: The time the item was created, as an ISO8601 timestamp
+          type: string
+        mime_type:
+          description: The Mime type of the data
+          type: string
+        file_name:
+          description: The file name of the data, if it is a file
+          type: string
+        data_size:
+          description: The size of the data, in bytes
+          type: integer
+        data_source:
+          description: Where the data came from
+          type: string
+        location:
+          description: How the data is identified in the location where the data came from
+          type: string
+        data_location:
+          description: >-
+            The identifier used to identify the data where the data is stored
+            now
+          type: string
+        data_location_type:
+          description: Where the data is stored now
+          type: string
+        significance:
+          description: The significance level of the data item
+          type: string
+        sig_precedence:
+          description: The precedence of the significance of the data item
+          type: string
+        audit:
+          description: Is this data item an audit message
+          type: boolean
+        deleted:
+          description: Has this data item been deleted
+          type: boolean
+        edited:
+          description: Has this data been edited
+          type: boolean
+        last_modified:
+          description: The time the item was last modified, as an ISO8601 timestamp
+          type: string
+        hidden:
+          description: Is this data item hidden
+          type: boolean
+        inline:
+          description: >-
+            Whether this item is embedded in its parent's body rather than shown
+            as a reply row.
+          type: boolean
+        draft:
+          description: Whether this item is an unpublished draft.
+          type: boolean
+      title: WikiPageDataResourceAttributes
+      type: object
+    WikiPageDataResourceRelationships:
+      nullable: true
+      properties:
+        acl:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        parent_data:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        parent_wiki_page:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        inline_data:
+          $ref: '#/components/schemas/JsonApiToManyRelationship'
+        creator:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+        editor:
+          $ref: '#/components/schemas/JsonApiToOneRelationship'
+      title: WikiPageDataResourceRelationships
       type: object
     CaseReportResource_attributes:
       properties:
@@ -16307,8 +17189,7 @@ components:
           format: Byte
           type: string
         encryption_key:
-          $ref: >-
-            #/components/schemas/SystemPropertyResource_attributes_encryption_key
+          $ref: '#/components/schemas/SystemPropertyResource_attributes_encryption_key'
       type: object
     SystemPropertyPostRequest_data_attributes:
       properties:
@@ -16600,6 +17481,14 @@ components:
           additionalProperties: true
           description: A complete Vega-Lite v5 specification with inline data
           type: object
+        value:
+          description: >
+            Canonical scalar value for chartType=metric (a count, a net
+            difference, or a duration in seconds). Omitted for chart specs.
+            Display formatting/units are a frontend concern.
+          format: double
+          nullable: true
+          type: number
       type: object
     VisualizationCatalogResource_attributes:
       properties:
@@ -16618,6 +17507,34 @@ components:
           items:
             type: string
           type: array
+      type: object
+    AclPermissionCheckResource_attributes:
+      properties:
+        manage:
+          description: Whether the caller has MANAGE over objects protected by this ACL
+          type: boolean
+        create:
+          description: Whether the caller has CREATE over objects protected by this ACL
+          type: boolean
+        read:
+          description: Whether the caller has READ over objects protected by this ACL
+          type: boolean
+        update:
+          description: Whether the caller has UPDATE over objects protected by this ACL
+          type: boolean
+        delete:
+          description: Whether the caller has DELETE over objects protected by this ACL
+          type: boolean
+        find:
+          description: Whether the caller has FIND over objects protected by this ACL
+          type: boolean
+      required:
+        - create
+        - delete
+        - find
+        - manage
+        - read
+        - update
       type: object
     BulkImportRequestResource_attributes:
       properties:
@@ -16744,6 +17661,8 @@ components:
       $ref: '#/components/parameters/filter-untagged'
     FilterCase:
       $ref: '#/components/parameters/filter-case'
+    FilterAcl:
+      $ref: '#/components/parameters/filter-acl'
     Sort:
       $ref: '#/components/parameters/sort'
     SortDir:
@@ -16948,6 +17867,13 @@ components:
       schema:
         format: uuid
         type: string
+    filter-acl:
+      description: Comma-delimited list of ACL UUIDs to check
+      in: query
+      name: filter[acl]
+      required: false
+      schema:
+        type: string
 x-tagGroups:
   - name: Cydarm API
     tags:
@@ -16986,6 +17912,8 @@ x-tagGroups:
       - v09_event-trigger
       - v09_case
       - v09_case-data
+      - v09_action-instance-data
+      - v09_wiki-page-data
       - v09_case-report
       - v09_operations
       - v09_system-property
@@ -16994,5 +17922,9 @@ x-tagGroups:
       - v09_sla-warning
       - v09_visualization
       - v09_visualization-catalog
+      - v09_acl-permission-check
       - v09_bulk-import-export
+      - v09_health
+      - v09_session
+      - v09_authn
       - v09_connector
